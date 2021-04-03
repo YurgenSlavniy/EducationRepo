@@ -1,11 +1,19 @@
 <meta charset="utf-8">
 <script type="text/javascript">
-/*Пользователь вводит сумму вклада и процент, который будет начисляться ежегодно. Отобразить размер вклада поочередно на ближайшие 5 лет.*/
+
 	var totalsum = +prompt("Введите сумму, которую вы хотите инвистировать в рублях");
 	var percent = +prompt("Введите сколько процентов годовых вы хотите получать");
+	var percent1year = (totalsum * percent / 100);
+	var totalsum1year = totalsum + percent1year
+	var percent2year = (totalsum1year * percent / 100);
+	var totalsum2year = totalsum1year + percent2year
+	var percent3year = (totalsum2year * percent / 100);
+	var totalsum3year = totalsum2year + percent3year
+	var percent4year = (totalsum3year * percent / 100);
+	var totalsum4year = totalsum3year + percent4year
+	var percent5year = (totalsum4year * percent / 100);
+	var totalsum5year = totalsum4year + percent5year
 
- 	percent = (totalsum * percent / 100)
-	totalsum = totalsum + percent
-	alert("Первый год ваша прибыль составит " + percent + " рублей \n" + "ваша сумма на вкладе составит "  + totalsum + " рублей")
+	alert("Ваш вклад " + totalsum.toFixed(2) + " Рублей под " + percent.toFixed(2) + " процентов годовых: \n " + " \n" + "Первый год ваша прибыль составит " + percent1year.toFixed(2) + " рублей " + "ваша сумма на вкладе составит "  + totalsum1year.toFixed(2) + " рублей \n" + "Второй год ваша прибыль составит " + percent2year.toFixed(2) + " рублей " + "ваша сумма на вкладе составит "  + totalsum2year.toFixed(2) + " рублей \n" + "Третий год ваша прибыль составит " + percent3year.toFixed(2) + " рублей " + "ваша сумма на вкладе составит "  + totalsum3year.toFixed(2) + " рублей \n" + "четвёртый год ваша прибыль составит " + percent4year.toFixed(2) + " рублей " + "ваша сумма на вкладе составит "  + totalsum4year.toFixed(2) + " рублей \n" + "Пятый год ваша прибыль составит " + percent5year.toFixed(2) + " рублей " + "ваша сумма на вкладе составит "  + totalsum5year.toFixed(2) + " рублей \n");
 
 </script>
