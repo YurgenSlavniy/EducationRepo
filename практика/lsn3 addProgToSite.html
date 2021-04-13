@@ -1,0 +1,281 @@
+// На предыдущем уроке разработали главную страницу сайта. Сегодняшняя задача перенести игру загадки в наш сайт. 
+// создадим отдельную html страницу, на которой будет распологаться наша игра. создадим копию файла index.html - и переиминуем созданную копию . 
+//будем работать с этим файлом, сперва удалим из него всё лишнее . 
+// для начала ы хотим, чтобы наши ссылки навигации по сайту работали: за ссылки отвечает тег <a href="#" > пока стоит решётка - это заглушка.
+<body>
+
+<div class="header">
+	<a href="index.html">Главная</a>
+	<a href="#">Важная</a>
+	<a href="#">Продуктивная</a>
+	<a href="#">Гостевая</a>
+	<a href="game1.html">Загадочная</a>
+</div>
+
+// Нам понадобится на страничке :
+<h1>Игра в загадки</h1>
+<div class="box">
+</div>
+между тегами див класс бокс пишем код:
+<div class="box">
+
+	<p>Как называется специальность которой мы тебя обучаем?</p>
+	<input type="text">
+
+	<p>Какой язык программирования ты будешь осваивать основным?</p>
+	<input type="text">
+
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text">
+
+</div>
+
+
+// Теперь нужна кнопка при нажатии на которую произойдёт проверка пользовательских ответов с правильными.  воспользуемся ссылкой <a href="#">Ответить</a> . Нам бы хотелось чтобы при нажатии на кнопку выполнялась наша программа на языке JS которая сравнит ответы пользователся с эталоннными. У тега а есть специальный атрибут onClick. В этом атрибуте мы задаём действие которое будет выполняться при нажатии данной ссылки... Внутри тэга хеад пропишем тэг скрипт. 
+
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		
+	</script>
+</head>
+
+// внутри тега скрипт мы можен написать например какую нибудь функцию и обратиться к ней уже в ссылке 
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		function checkAnswers() {
+			// body...
+		}
+
+	</script>
+...
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text">
+
+	<br>
+	<a href="#" onClick="checkAnswers()">Ответить</a>
+
+</div>
+
+// функция должна получить те ответы, которые ввёл пользователь. т. е посмотреть внутрь <input type="text"> и определить какая строка туда введена. Если есть несколько инпутов и чтобы их отличать мы пометим их специальным атрибутом id 
+
+<div class="box">
+
+	<p>Как называется специальность которой мы тебя обучаем?</p>
+	<input type="text" id="userAnser1">
+
+	<p>Какой язык программирования ты будешь осваивать основным?</p>
+	<input type="text" id="userAnser2">
+
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text" id="userAnser3">
+
+	<br>
+	<a href="#" onClick="checkAnswers()">Ответить</a>
+
+</div>
+
+
+// Теперь внутри функции на языке JS мы должны получить текстовое значение, находящееся внутри тега с идентификатором userAnser1 , 
+// в функции создадим переменную в которую положим пользовательский ответ. есть спец. команда с помощью которой можно получить доступ к значению любого элемента на html странице. document.getElementById("userAnser1") - она находит в хтмл странице элемент помеченный идентификатором userAnser1. document.getElementById("userAnser1").value и записваем .value т. к хотим получить значение этого элемента 
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		function checkAnswers() {
+			var userAnswer = document.getElementById("userAnser1").value;
+			
+		}
+
+	</script>
+</head>
+
+
+// Прописываем условия в функции если ответ пользователя равен ответу if(userAnswer == "программист" || userAnswer == "девелопер" ) программист или девелопер, Не забудем привести userAnswer к нижнему регистру userAnswer = userAnswer.toLowerCase();
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		function checkAnswers() {
+			var userAnswer = document.getElementById("userAnser1").value;
+			var score = 0;
+			userAnswer = userAnswer.toLowerCase();
+			if(userAnswer == "программист" || userAnswer == "девелопер" ){
+				score++;
+
+			userAnswer = document.getElementById("userAnser2").value;
+			if(userAnswer == "питон" || userAnswer == "пайтон" ){
+							score++;
+			userAnswer = document.getElementById("userAnser3").value;
+			if(userAnswer == "елка" || userAnswer == "доллар" ){
+							score++;
+			}
+
+	</script>
+
+
+	//Итого создали отдельную страничку, куда поместили игру в загадки: 
+___________________________________________________
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		function checkAnswers() {
+			var userAnswer = document.getElementById("userAnser1").value;
+			var score = 0;
+			userAnswer = userAnswer.toLowerCase();
+			if(userAnswer == "программист" || userAnswer == "девелопер" ){
+				score++;
+			}
+
+			userAnswer = document.getElementById("userAnser2").value;
+			if(userAnswer == "питон" || userAnswer == "пайтон" ){
+							score++;
+			}
+
+			userAnswer = document.getElementById("userAnser3").value;
+			if(userAnswer == "елка" || userAnswer == "доллар" ){
+							score++;
+			}
+
+			alert("вы дали правильных ответов: " + score );
+
+		}
+	</script>
+
+</head>
+
+<body>
+
+<div class="header">
+	<a href="index.html">Главная</a>
+	<a href="#">Важная</a>
+	<a href="#">Продуктивная</a>
+	<a href="#">Гостевая</a>
+	<a href="game1.html">Загадочная</a>
+</div>
+
+<h1>Игра в загадки</h1>
+
+<div class="box">
+
+	<p>Как называется специальность которой мы тебя обучаем?</p>
+	<input type="text" id="userAnser1">
+
+	<p>Какой язык программирования ты будешь осваивать основным?</p>
+	<input type="text" id="userAnser2">
+
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text" id="userAnser3">
+
+	<br>
+	<a href="#" onClick="checkAnswers()">Ответить</a>
+
+</div>
+
+<div class="footer">
+Copycight &copy;  Yurgen Slavniy
+</div>
+
+</body>
+</html>
+
+________________________________________________
+// Создадим ещё одну функцию, для проверки праивльного отвта function checkAnsewr(inputId), function checkAnsewr(inputId, answers) передаём в функцию в качестве аргумента inputId - идинтификатор того элемента из которого мы будем извлекать ответ пользователя. и у нас будет массив с правильными ответами answers. Первым делом создадим соответственно переменную var userAnswer в которую мы запишем значение элемента хранящегося в inputId. Приведём его к нижнему регистру userAnswer = userAnswer.toLowerCase(); Теперь мы должны сравнить со всеми возможными правильными ответами userAnswer. С помощью цикла фор пробегаемся по всем значениям массива answers, и если было совпадение userAnswer == answers[i]. юзерансвер совпал с итым элементом массива ансвер, в этом случае мы должны увеличить переменную скоре , ну и выйти из цикла break;
+
+function checkAnsewr(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for (var i = 0;  i < answers.length; i++) {
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+
+НЕ ЗАБУДЕМ СОЗДАТЬ ПЕРЕМЕННУЮ var score = 0; - это глобальная переменная к которой будет обращаться функция.
+_____________________________________________
+		<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		var score = 0;
+
+		function checkAnsewr(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for (var i = 0;  i < answers.length; i++) {
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+
+		function checkAnswers() {
+			
+			checkAnsewr("userAnser1", ["программист","девелопер"]);
+			checkAnsewr("userAnser2", ["пайтон","питон"]);
+			checkAnsewr("userAnser3", ["доллар","елка"]);
+			alert("вы дали правильных ответов: " + score );
+
+		}
+	</script>
+
+</head>
+
+<body>
+
+<div class="header">
+	<a href="index.html">Главная</a>
+	<a href="#">Важная</a>
+	<a href="#">Продуктивная</a>
+	<a href="#">Гостевая</a>
+	<a href="game1.html">Загадочная</a>
+</div>
+
+<h1>Игра в загадки</h1>
+
+<div class="box">
+
+	<p>Как называется специальность которой мы тебя обучаем?</p>
+	<input type="text" id="userAnser1">
+
+	<p>Какой язык программирования ты будешь осваивать основным?</p>
+	<input type="text" id="userAnser2">
+
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text" id="userAnser3">
+
+	<br>
+	<a href="#" onClick="checkAnswers()">Ответить</a>
+
+</div>
+
+<div class="footer">
+Copycight &copy;  Yurgen Slavniy
+</div>
+
+</body>
+</html>
+_________________________________________________

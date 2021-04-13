@@ -1,0 +1,15 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+// функция которая генерирует массив указанной длины и заполняет этот массив случайными числами 
+function randomMassive(length){
+	var numbers = [];
+// создаём переменную numbers и присваиваем ей пустой массив.
+	for(i = 0; i < length; i++){
+		var randomNumber = getRandomNumber(100);
+		numbers.push(randomNumber); 
+	}
+	return numbers;
+}
+
+var numbers = randomMassive(length)
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		var score = 0;
+
+		function checkAnsewr(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for (var i = 0;  i < answers.length; i++) {
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+
+		function checkAnswers() {
+			
+			checkAnsewr("userAnser1", ["программист","девелопер"]);
+			checkAnsewr("userAnser2", ["пайтон","питон"]);
+			checkAnsewr("userAnser3", ["доллар","елка"]);
+			alert("вы дали правильных ответов: " + score );
+
+		}
+	</script>
+
+</head>
+
+<body>
+
+<div class="header">
+	<a href="index.html">Главная</a>
+	<a href="#">Важная</a>
+	<a href="game2.html">Продуктивная</a>
+	<a href="#">Гостевая</a>
+	<a href="game1.html">Загадочная</a>
+</div>
+
+<h1>Игра в загадки</h1>
+
+<div class="box">
+
+	<p>Как называется специальность которой мы тебя обучаем?</p>
+	<input type="text" id="userAnser1">
+
+	<p>Какой язык программирования ты будешь осваивать основным?</p>
+	<input type="text" id="userAnser2">
+
+	<p>Зимой и летом одним цветом?</p>
+	<input type="text" id="userAnser3">
+
+	<br>
+	<a href="#" onClick="checkAnswers()">Ответить</a>
+
+</div>
+
+<div class="footer">
+Copycight &copy;  Yurgen Slavniy
+</div>
+
+</body>
+</html>

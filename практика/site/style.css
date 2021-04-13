@@ -1,0 +1,28 @@
+
+
+.header {
+	background-color: yellow;
+	border-width: 0.14px;
+	border-color: #b5b7ba;
+	border-style: solid;
+	background-color: #dfdfdf;
+	height: 60px;
+	text-align: center;
+	padding-top: 18px;
+}
+
+.header a {
+	color: #4d4d4d;
+	font-size: 20px;
+	font-weight: 100;
+	padding-right: 25px;
+}
+
+.footer{
+	background-color: #434445;
+	height: 80px;
+	padding-top: 60px;
+	color: #a4a4a4;
+	font-weight: 100;
+	text-align: center;
+}
