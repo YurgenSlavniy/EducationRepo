@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var score = 0;
+
+		function checkAnswer(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for(var i = 0; i < answers.length; i++){
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+		
+		function checkAnswers() {
+
+			checkAnswer("userAnswer1", ["да", "согласен","конечно", "ага"]);
+			checkAnswer("userAnswer2", ["морской", "укус акулы"]);
+			checkAnswer("userAnswer3", ["да", "согласен","конечно", "ага", "шахматный", "мертвый"]);
+			checkAnswer("userAnswer4", ["да", "согласен","конечно", "ага", "шахматный", "мертвый"]);
+			checkAnswer("userAnswer5", ["да", "согласен","конечно", "ага", "шахматный", "мертвый"]);
+			checkAnswer("userAnswer6", ["сопля", "укус акулы", "конечно", "ага"]);
+			checkAnswer("userAnswer7", ["сопля", "укус акулы", "конечно", "да", "согласен","конечно", "ага", "шахматный", "мертвый",]);
+			checkAnswer("userAnswer8", ["морской", "укус акулы", "сопля", "да", "конечно", "ага"]);
+			checkAnswer("userAnswer9", ["доллар", "елка", "путин", "да", "нет", "тик", "ток"]);
+			checkAnswer("userAnswer10", ["доллар", "елка", "путин", "да", "конечно", "тик", "ток"]);
+			checkAnswer("userAnswer11", ["путин", "вова", "да", "конечно", "тик", "ток"]);
+			checkAnswer("userAnswer12", ["освоил", "вова". "да", "конечно", "тик", "ток"]);
+
+
+			// checkAnswer("userAnswer", ["", ""]);
+
+
+			alert("Вы отгадали " + score + " загадок");
+
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="#">Загадки</a>
+		<a href="guess.html">Замысловатая</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1> это не <b>"Игра в загадки"</b></h1>
+
+			<div class="box">
+
+				<p>Ты согласен, что динамично развивающаяся ай ти сфера - это будущее цивилизации?</p>
+				<input type="text" id="userAnswer1">
+
+				<p>Какой болезнью никто не болеет на суше?</p>
+				<input type="text" id="userAnswer2">
+
+				<p>Тебя заинтересует, как разрабодчика площадка, на которой можно будеть стажероваться и участвовать в проектах. получая бесценный опыт работы в команде?</p>
+				<input type="text" id="userAnswer3">
+
+				<p>Какой конь не ест овса?</p>
+				<input type="text" id="userAnswer4">
+
+				<p>Ты же хочешь успешно освоить новую профессию.?</p>
+				<input type="text" id="userAnswer5">
+
+				<p> С горки ползком, в горку бегом?</p>
+				<input type="text" id="userAnswer6">
+
+				<p> Знаешь что нибудь про криптовалюту?</p>
+				<input type="text" id="userAnswer7">
+
+				<p> хочешь жить без материальных трудностей?</p>
+				<input type="text" id="userAnswer8">
+
+				<p> Зимой и летом одним цветом?</p>
+				<input type="text" id="userAnswer9">
+
+				<p> Готов со мной сотрудничать?</p>
+				<input type="text" id="userAnswer10">
+
+				<p> Кто нынче президент России?</p>
+				<input type="text" id="userAnswer11">
+
+				<p>Пользователь, как ты думаешь, я освоил курс основы программирования?</p>
+				<input type="text" id="userAnswer12">
+
+				<p>Можешь проверить освоил ли его ты, если откроешь мой код и наберёшь <b>максимальные 12 баллов!</b></p>
+
+				<br>
+				<a href="#" onClick="checkAnswers();">Ответить</a>
+			
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; YurgenSlavniy
+<div>
+
+
+</body>
+</html>
