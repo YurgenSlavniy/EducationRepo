@@ -1593,6 +1593,75 @@ Copycight &copy;  Yurgen Slavniy
 </html>
 _________________________________________________
 
+Добавляю еще одну страничку для сайта с игрой угадайка
+_____________________________________________
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>afterEducetionCourse</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+
+		function readInt(){
+			var number = document.getElementById("userAnswer").value;
+			return parseInt(number);
+		}	
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+
+		}
+
+		function guess(){
+			var userAnswer = readInt();
+			if(userAnswer == answer){
+				write("<b>Вы угадали!</b>")
+			} else if(userAnswer > answer){
+				write("Вы ввели <b>слишком большое</b> число<br> Попробуйте ещё раз. угадайте число от 0 до 100");
+			} else if(userAnswer < answer){
+				write("Вы ввели <b>слишком маленькое</b> число<br> Попробуйте ещё раз. угадайте число от 0 до 100");
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+
+<div class="header">
+	<a href="index.html">Главная</a>
+	<a href="#">Важная</a>
+	<a href="game2.html">Продуктивная</a>
+	<a href="#">Гостевая</a>
+	<a href="game1.html">Загадочная</a>
+</div>
+
+<h1>Угадай число</h1>
+
+<div class="box">
+
+	<p id="info">Угадайте число от 0 до 100</p>
+	<input type="text" id="userAnswer">
+	<br>
+	<a href="#" onClick="guess();">Начать</a>
+
+</div>
+
+<div class="footer">
+Copycight &copy;  Yurgen Slavniy
+</div>
+
+</body>
+</html>
+__________________________________________________________________________
+
+
+
 
 
 
