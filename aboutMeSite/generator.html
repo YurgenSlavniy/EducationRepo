@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ИТОГИ ОБУЧЕНИЯ.пример программы</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var letters = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m","1","2","3","4","5","6","7","8","9","0"];
+
+		function readInt(){
+			return +document.getElementById("userAnswer").value;
+		}
+
+		function write(text) {
+			return document.getElementById("passw").innerHTML = text;
+		}
+
+		function getRandomNumber(max){
+			return Math.round(Math.random() * max);
+		}
+
+		function generateText(letters, length){
+			var text = "";
+			for(var i = 0; i < length; i++){
+				var n = getRandomNumber(letters.length - 1);
+				text = text + letters[n];
+			}
+
+			return text;
+		}
+
+		function generate(){
+			var length = readInt();
+			var passw = generateText(letters,[length]);
+			write(passw);
+		}
+		
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадочная</a>
+		<a href="guess.html">Замысловатая</a>
+		<a href="thourzand.html">Цифровая</a>
+		<a href="#">Генераторная</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Случайных паролей генератор</h1>
+
+			<div class="box">
+
+				<p>укажите длину пароля</p> 
+				<input type="text" id="userAnswer">
+				<h3 id="passw"></h3>	
+				<a href="#" onClick="generate();">ГЕНЕРИРОВАТЬ!</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; YurgenSlavniy
+<div>
+
+
+</body>
+</html>
