@@ -52,9 +52,9 @@ mas = int(input('What is weigth? Сколько весит?'))
 
 if age <= 30 and mas >= 50 and mas <= 120:
     print('Имя:', name, ', Фамилия:', surname, ', Возраст:', age, ', Вес:', mas, ' ---> Хорошее состояние ')
-elif age >= 30 and age <= 40 and mas <= 50 and mas >= 120:
+elif age > 30 and age < 40 and mas < 50 or mas > 120 and age > 30 and age < 40:
     print('Имя:', name, ', Фамилия:', surname, ', Возраст:', age, ', Вес:', mas, ' ---> Следует заняться собой ')
-elif age >= 40 and mas <= 50 and mas >= 120:
+elif age >= 40 and mas <= 50 or mas >= 120 and age >=40:
     print('Имя:', name, ', Фамилия:', surname, ', Возраст:', age, ', Вес:', mas,' ---> Требуется врачебный осмотр ')
 else:
     print('Имя:', name, ', Фамилия:', surname, ', Возраст:', age, ', Вес:', mas,)
