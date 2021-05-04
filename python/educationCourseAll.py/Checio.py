@@ -59,3 +59,12 @@ def first_word(text: str) -> str:
 # 1
 # 2
 # Для чего это нужно: Для проверки заполнения пароля. Кроме того, полезно будет научиться оценивать задачи.
+
+def is_acceptable_password(password: str) -> bool:
+    if len(password) > 6:
+        return True
+    else:
+        return False
+
+# Решение через lambda
+is_acceptable_password_lambda = lambda password: len(password) > 6

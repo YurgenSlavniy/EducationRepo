@@ -18,7 +18,7 @@
 #
 # Примечание. Функция номер 2 используется внутри функции номер 1 для вычисления урона и вычитания его из здоровья персонажа.
 
-# 1 .
+# 1 .#
 def anketa():
     name = input('Введите имя')
     age = int(input('Введите возраст'))
@@ -35,3 +35,30 @@ def max_from_3(first, second, third):
 max_from_3(90, 4, 28)
 
 # 3 .
+playername = input('Введите имя игрока: ')
+player = {'name': playername, 'health': 100, 'damage': 75}
+enemy = {'health': 74, 'damage': 34}
+
+
+def attack(person1, person2):
+    person1 = player
+    person2 = enemy
+    fight = person2['health'] - person1['damage']
+    if fight > 0:
+        person2['health'] = fight
+        print(person2)
+    else:
+        print('Враг Повержен!')
+
+
+attack(player, enemy)
+
+# 4.
+
+player['armor'] = 1.2
+enemy['armor'] = 1.5
+
+def arm_atack(person1, person2):
+    person1 = player
+    person2 = enemy
+    uron = person1['damage']/person1['armor']
