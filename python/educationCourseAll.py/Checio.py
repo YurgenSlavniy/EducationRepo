@@ -1,3 +1,7 @@
+#-----------------#
+# Elementary:     #
+#-----------------#
+
 # ЗАДАЧА 1. Multiply (Intro)
 #
 # Итак, это самая простая миссия. Напишите функцию, которая будет получать
@@ -104,16 +108,16 @@ def end_zeros(num: int) -> int:
         else:
             break
     return count
-#--------------------
+
 def end_zeros(num: int) -> int:
     return len(s := str(num)) - len(s.rstrip('0'))
-#--------------------
+
 end_zeros = lambda num: len(str(num)) - len(str(num).rstrip('0'))
-#--------------------
+
 import re
 def end_zeros(num: int) -> int:
     return len(re.search('0*$', str(num)).group())
-#--------------------
+
 def end_zeros(number):
     n = str(number)
     return len(n) - len(n.strip('0'))
@@ -163,12 +167,12 @@ def end_zeros(number):
 def backward_string(val: str) -> str:
     string = "".join(reversed(val))
     return string
-#--------------------
+
 backward_string = lambda val: val[::-1]
-#--------------------
+
 def backward_string(val: str) -> str:
     return val[::-1]
-#--------------------
+
 
 # ЗАДАЧА 7. Remove All Before
 #
@@ -207,20 +211,179 @@ def remove_all_before(items: list, border: int) -> Iterable:
         x = items.index(border)
         return items[x:]
 
+# ЗАДАЧА 8. All Upper I
+#
+# Проверить все ли символы в строке являются заглавными.
+# Если строка пустая или в ней нет букв - функция должна вернуть True.
+#
+# Входные данные: Строка.
+# Выходные данные: Логический тип.
+#
+# Пример:
+# is_all_upper('ALL UPPER') == True
+# is_all_upper('all lower') == False
+# is_all_upper('mixed UPPER and lower') == False
+# is_all_upper('') == True
+# is_all_upper('444') == True
+# is_all_upper('55 55 5') == True
+# Условия: a-z, A-Z, 1-9 и пробелы
 
-    # ЗАДАЧА 8
+def is_all_upper(text: str) -> bool:
+    return text == text.upper()
+
+import re
+def is_all_upper(text: str) -> bool:
+    return len(re.sub(r'[a-z]', '', text))==len(text)
+
+def is_all_upper(text: str) -> bool:
+    text=text.replace(" ","")
+    if text.isupper()==True:
+        return True
+    elif len(text)==0:
+        return True
+    elif text.isdigit()==True:
+        return True
+    elif text.isspace()==True:
+        return True
+    else:
+        return False
+
+
+def is_all_upper(text: str) -> bool:
+    result = True
+    if not text.strip() or text.isupper() or any(char.isdigit() for char in text):
+        result = True
+    elif text.islower() or (not text.islower() and not text.isupper()):
+        result = False
+    return result
+
+
+# ЗАДАЧА 9. Replace First
 #
+# В данном списке первый элемент должен стать последним.
+# Пустой список или список из одного элемента не должен измениться.
 #
-# ЗАДАЧА 9
+# Входные данные: Список.
+# Выходные данные: Набор элементов.
 #
+# Пример:
+# replace_first([1, 2, 3, 4]) == [2, 3, 4, 1]
+# replace_first([1]) == [1]
+
+from typing import Iterable
+def replace_first(items: list) -> Iterable:
+    if items == []:
+        return items
+    else:
+        a = items[0]
+        del items[0]
+        items.append(a)
+        return items
+
+# Change items IN-PLACE.
+def replace_first(items: list) -> list:
+    if items:
+        items.append(items.pop(0))
+    return items
+
+# Slices
+def replace_first(items: list) -> list:
+    return items[1:] + items[:1]
+
+# collections.deque have an useful method: rotate.
+from collections import deque
+def replace_first(items: list) -> deque:
+    items = deque(items)
+    items.rotate(-1)
+    return items
+
+replace_first = lambda a: a[1:] + a[:1]
+
+from typing import Iterable
+def replace_first(items: list) -> Iterable:
+    return items[1:] + items[:1]
+
+from typing import Iterable
+def replace_first(items: list) -> Iterable:
+    if len(items) > 1:
+        items.append(items.pop(0))
+    return items
+
+
+# ЗАДАЧА 10. Max Digit
 #
+# У вас есть число и нужно определить
+# какая цифра из этого числа является наибольшей.
 #
-# ЗАДАЧА 10
+# Входные данные: Положительное целое число.
+# Выходные данные: Целое число (0-9).
 #
-# ЗАДАЧА 11
+# Пример:
+# max_digit(0) == 0
+# max_digit(52) == 5
+# max_digit(634) == 6
+# max_digit(1) == 1
+# max_digit(10000) == 1
+
+def max_digit(number: int) -> int:
+    return int(max(i for i in str(number)))
+
+def max_digit(number):
+    number = set(str(number))
+    return int(max(number))
+
+def max_digit(number: int) -> int:
+    text = str(number)
+    for n in range(9, -1, -1):
+        if str(n) in text:
+            return n
+
+max_digit = lambda number: int(max(str(number)))
+
+
+# ЗАДАЧА 11. Split Pairs
 #
+# Разделите строку на пары из двух символов.
+# Если строка содержит нечетное количество символов,
+# пропущенный второй символ последней пары должен быть заменен подчеркиванием ('_').
 #
+# Входные данные: Строка.
+# Выходные данные: Массив строк.
 #
+# Пример:
+# split_pairs('abcd') == ['ab', 'cd']
+# split_pairs('abc') == ['ab', 'c_']
+# Предварительное условие: 0<=len(str)<=100
+
+def split_pairs(a):
+    if len(a) == 0:
+        a = a
+    elif len(a) % 2 == 0:
+        a = a
+    else:
+        a = a + '_'
+    n = 2
+    chunks = [a[i:i+n] for i in range(0, len(a), n)]
+    return chunks
+
+def split_pairs(a):
+    return [ch1+ch2 for ch1,ch2 in zip(a[::2],a[1::2]+'_')]
+
+from textwrap import wrap
+def split_pairs(a):
+    a = a + '_' if len(a) % 2 else a
+    return wrap(a, 2)
+
+import itertools, operator
+def split_pairs(a):
+    it = itertools.chain(a, '_')
+    return map(operator.add, it, it)
+
+def split_pairs(s):
+    N = len(s)
+    if N % 2 == 1: s += "_"
+    return [s[i:i+2] for i in range(0,N,2)]
+
 # ЗАДАЧА 12
 #
 # ЗАДАЧА 13
