@@ -384,8 +384,54 @@ def split_pairs(s):
     if N % 2 == 1: s += "_"
     return [s[i:i+2] for i in range(0,N,2)]
 
-# ЗАДАЧА 12
+# ЗАДАЧА 12. Beginning Zeros
 #
+# Вам дана строка состоящая только из цифр.
+# Вам нужно посчитать сколько нулей ("0")
+# находится в начале строки.
+#
+# Входные данные: Строка, состоящая только из цифр.
+# Выходные данные: Целое число.
+#
+# Пример:
+# beginning_zeros('100') == 0
+# beginning_zeros('001') == 2
+# beginning_zeros('100100') == 0
+# beginning_zeros('001001') == 2
+# beginning_zeros('012345679') == 1
+# beginning_zeros('0000') == 4
+# Строка может иметь цифры: 0-9
+
+def beginning_zeros(number: str) -> int:
+    result = 0
+    for n in number:
+        if int(n) == 0:
+            result += 1
+        else:
+            return result
+    return result
+
+beginning_zeros = lambda number: len(number) - len(number.lstrip('0'))
+
+from itertools import takewhile
+beginning_zeros = lambda number: len(list(takewhile(lambda x: x=='0', number)))
+
+def beginning_zeros(number: str) -> int:
+    return (len(number)-len(number.lstrip("0")))
+
+def beginning_zeros(number: str) -> int:
+    zero = 0
+    for num in number:
+        if num != '0':
+            break
+        else:
+            zero += 1
+    return zero
+
+import re
+def beginning_zeros(number: str) -> int:
+    return len(re.sub(r'[^0].*$', '', number))
+
 # ЗАДАЧА 13
 #
 #

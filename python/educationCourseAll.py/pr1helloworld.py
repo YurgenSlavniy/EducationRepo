@@ -5,3 +5,5 @@ print('first you read this')
 # таким образом удобно сразу изменять программ уи смотреть на результат
 # запускаем заново и видим у нас есть 2 строчки - first you read this
 ###
+import sys
+print(sys.argv[0])
