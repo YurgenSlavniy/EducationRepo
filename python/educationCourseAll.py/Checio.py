@@ -522,3 +522,11 @@ def nearest_value(values: set, one: int) -> int:
 # ЗАДАЧА 14
 #
 #
+
+# ЗАДАЧА 15
+#
+#
+
+# ЗАДАЧА 16
+#
+#
