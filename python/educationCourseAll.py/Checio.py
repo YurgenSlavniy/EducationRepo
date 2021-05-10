@@ -460,6 +460,62 @@ def beginning_zeros(number: str) -> int:
 # nearest_value({4, 7, 10, 11, 12, 17}, 9) == 10
 # nearest_value({4, 7, 10, 11, 12, 17}, 8) == 7
 
+def nearest_value(values, one):
+    return min({(abs(n-one), n) for n in values})[1]
+
+
+def nearest_value(values: set, one: int) -> int:
+    return sorted(sorted(values), key=lambda x: abs(one - x))[0]
+
+def nearest_value(values: set, one: int) -> int:
+    lista = sorted(values)
+    for element in lista:
+        diff = abs(one - element)
+        try:
+            if diff < prevDiff:
+                prevDiff = diff
+                nearest = element
+        except UnboundLocalError:
+            prevDiff = diff
+            nearest = element
+    return nearest
+
+def nearest_value(values: set, one: int) -> int:
+    l = list(values);
+    l.sort(key=lambda x:(abs(x - one),x));
+    return l[0];
+
+def nearest_value(values: set, one: int) -> int:
+    values = list(values)
+    if one in values:
+        return one
+    else:
+        values.append(one)
+        values.sort()
+        ind = values.index(one)
+        if ind == 0:
+            return values[1]
+        elif ind == len(values) - 1:
+            return values[-2]
+        else:
+            prev = values[ind - 1]
+            next = values[ind + 1]
+            d_prev = one - prev
+            d_next = next - one
+            if d_next == d_prev:
+                return prev
+            elif d_prev < d_next:
+                return prev
+            else:
+                return next
+
+def nearest_value(values: set, one: int) -> int:
+    def distance(value): return abs(value - one), value > one
+    return min(values, key=distance)
+
+def nearest_value(values: set, one: int) -> int:
+    return sorted([(abs(v - one), v) for v in values], key = lambda item: (item[0], item[1]))[0][1]
+
 
 
 
