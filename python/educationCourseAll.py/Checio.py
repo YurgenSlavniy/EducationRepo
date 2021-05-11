@@ -519,9 +519,47 @@ def nearest_value(values: set, one: int) -> int:
 
 
 
-# ЗАДАЧА 14
+# ЗАДАЧА 14. Between Markers (simplified)
 #
+# Вам дана строка и два маркера (начальный и конечный).
+# Вам необходимо найти текст, заключенный между двумя этими маркерами.
+# Но есть несколько важных условий:
 #
+# Начальный и конечный маркеры всегда разные.
+# Начальный и конечный маркеры всегда размером в один символ.
+# Начальный и конечный маркеры всегда есть в строке и идут один за другим.
+#
+# Input: Три аргумента. Все строки. Второй и третий аргументы это начальный и конечный маркеры.
+# Output: Строка.
+#
+# Пример:
+# between_markers('What is >apple<', '>', '<') == 'apple'
+# Как это используется: Может использоваться для парсинга небольшой верстки.
+#
+# Предусловия: Не может быть более одного маркера одного типа.
+
+
+def between_markers(text: str, begin: str, end: str) -> str:
+    return text[text.find(begin) + 1:text.find(end)]
+
+def between_markers(text: str, begin: str, end: str) -> str:
+    text = text.split(begin)[1]
+    return text.split(end)[0]
+
+def between_markers(text, m1, m2):
+    return text[text.index(m1)+1:text.index(m2)]
+
+from re import finditer
+def between_markers(text, *m):
+    return next(finditer((r"%s(.*)%s" % m).replace('[', '\[').replace(']', '\]'), text)).groups()[0]
+
+
+def between_markers(text: str, begin: str, end: str) -> str:
+    b = text.find(begin)
+    e = text.find(end)
+    return text[b + 1:e]
+
+
 
 # ЗАДАЧА 15
 #
