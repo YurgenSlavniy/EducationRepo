@@ -384,6 +384,7 @@ def split_pairs(s):
     if N % 2 == 1: s += "_"
     return [s[i:i+2] for i in range(0,N,2)]
 
+
 # ЗАДАЧА 12. Beginning Zeros
 #
 # Вам дана строка состоящая только из цифр.
@@ -517,8 +518,6 @@ def nearest_value(values: set, one: int) -> int:
     return sorted([(abs(v - one), v) for v in values], key = lambda item: (item[0], item[1]))[0][1]
 
 
-
-
 # ЗАДАЧА 14. Between Markers (simplified)
 #
 # Вам дана строка и два маркера (начальный и конечный).
@@ -537,7 +536,6 @@ def nearest_value(values: set, one: int) -> int:
 # Как это используется: Может использоваться для парсинга небольшой верстки.
 #
 # Предусловия: Не может быть более одного маркера одного типа.
-
 
 def between_markers(text: str, begin: str, end: str) -> str:
     return text[text.find(begin) + 1:text.find(end)]
@@ -560,10 +558,70 @@ def between_markers(text: str, begin: str, end: str) -> str:
     return text[b + 1:e]
 
 
+# ЗАДАЧА 15. Correct Sentence
+#
+# На вход Вашей функции будет передано одно предложение.
+# Необходимо вернуть его исправленную копию так,
+# чтобы оно всегда начиналось с большой буквы и заканчивалось точкой.
+#
+# Обратите внимание на то, что не все исправления необходимы.
+# Если предложение уже заканчивается на точку,
+# то добавлять еще одну не нужно, это будет ошибкой
+#
+# Входные аргументы: Строка (A string).
+# Выходные аргументы: Строка (A string).
+#
+# Пример:
+# correct_sentence("greetings, friends") == "Greetings, friends."
+# correct_sentence("Greetings, friends") == "Greetings, friends."
+# correct_sentence("Greetings, friends.") == "Greetings, friends."
+# Предусловия: В начале и конце нет пробелов, текст состоит только из пробелов, a-z A-Z , и .
 
-# ЗАДАЧА 15
-#
-#
+def correct_sentence(str):
+    text = ""
+    str = list(str)
+    str[0] = str[0].upper()
+    if "." not in str:
+        str += "."
+    str = "".join(str)
+    return str
+
+def correct_sentence(text: str) -> str:
+    text = text[0].upper() + text[1:]
+    if text[-1] != '.':
+        text = text + '.'
+    return text
+
+def correct_sentence(text: str) -> str:
+    text = text[0].upper() + text[1:]
+    if text[-1] != ".":
+        text +='.'
+    return text
+
+def correct_sentence(text: str) -> str:
+    if text[-1] == '.':
+        return text[0].upper() + text[1:]
+    else:
+        return text[0].upper() + text[1:] + '.'
+
+def correct_sentence(text: str) -> str:
+    text = list(text)
+    begin = text[0]
+    end = text[-1]
+    text[0] = begin if begin.isupper() else begin.upper()
+    text = text if end == '.' else text + ['.']
+    return ''.join(text)
+
+def correct_sentence(text: str) -> str:
+    return text[0].capitalize() + text.rstrip('.')[1:] + '.'
+
+def correct_sentence(text: str) -> str:
+    return text[0].upper() + text[1:] + '.' * (not text.endswith('.'))
+
+def correct_sentence(text: str) -> str:
+    a='' if text[-1]=='.' else '.'
+    return text[0].upper()+ text[1:] +a
+
 
 # ЗАДАЧА 16
 #
