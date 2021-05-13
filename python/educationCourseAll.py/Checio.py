@@ -625,4 +625,45 @@ def correct_sentence(text: str) -> str:
 
 # ЗАДАЧА 16
 #
+# Проверить является ли число четным или нет.
+# Ваша функция должна возвращать True если число четное,
+# и False если число не четное.
 #
+# Входные данные: Целое число.
+# Выходные данные: Логический тип.
+#
+# Пример:
+# is_even(2) == True
+# is_even(5) == False
+# is_even(0) == True
+# Где это используется: (математика используется везде)
+# Условия: целые числа даны в диапазоне от -1000 и до 1000
+
+def is_even(num: int) -> bool:
+    if num % 2 == 0:
+        return True
+    elif num == 0:
+        return True
+    else:
+        return False
+
+def is_even(num: int) -> bool:
+    return num & 1 == 0
+
+def is_even(num: int) -> bool:
+    return not bool(num%2)
+
+def is_even(num: int) -> bool:
+    return not num % 2
+
+def is_even(num: int) -> bool:
+    if num % 2 != 1:
+        return True
+    return False
+
+def is_even(num: int) -> bool:
+    return bin(num)[-1]=='0'
+
+# -----------------------------------
+#   END ELEMENTARY 17/17
+# -----------------------------------
