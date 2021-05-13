@@ -1,0 +1,4 @@
+Пишем строку с помощью: f.write("Пишем строку с помощью..." Пишем вторую строку с помощью этого же метода What the fuck? because code not utf-8What the fuck? 
+ because code not utf-8pythonlearningtimepython
+learning
+time
