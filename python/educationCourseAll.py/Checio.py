@@ -667,3 +667,96 @@ def is_even(num: int) -> bool:
 # -----------------------------------
 #   END ELEMENTARY 17/17
 # -----------------------------------
+
+# -----------------------------------
+#   START HOME 0/20
+# -----------------------------------
+
+
+# ЗАДАЧА 1.
+#
+# Вам дан текст в котором нужно просуммировать числа,
+# но только разделенные пробелом.
+# Если число является частью слова, то его суммировать не нужно.
+#
+# Текст состоит из чисел, пробелом и английского алфавита.
+#
+# Входные данные: Строка.
+# Выходные данные: Целое число.
+#
+# Пример:
+# sum_numbers('hi') == 0
+# sum_numbers('who is 1st here') == 0
+# sum_numbers('my numbers is 2') == 2
+# sum_numbers('This picture is an oil on canvas '
+#  'painting by Danish artist Anna '
+#  'Petersen between 1845 and 1910 year') == 3755
+# sum_numbers('5 plus 6 is') == 11
+# sum_numbers('') == 0
+
+def sum_numbers(text: str) -> int:
+    return sum(( int(word) for word in text.split() if word.isdigit()))
+
+
+def sum_numbers(text: str) -> int:
+    s = 0
+    for l in text.split():
+        try:
+            s += int(l)
+        except ValueError:
+            continue
+    return s
+
+
+class text_with_number:
+    def __init__(self, text):
+        self.text = text
+    def add_numbers(self):
+        answer = 0
+        for word in self.text.split():
+            if word.isdigit():
+                answer += int(word)
+        return answer
+def sum_numbers(text):
+    return text_with_number(text).add_numbers()
+
+def sum_numbers(text: str) -> int:
+    count = 0
+    spl_text = text.split(' ')
+    for i in spl_text:
+        i.replace(' ', '')
+        if i.isnumeric():
+            count += int(i)
+    return count
+
+def sum_numbers(text: str) -> int:
+    # your code here
+    return sum(map(lambda x: int(x), filter(lambda x: x.isnumeric(), text.split())))
+
+def sum_numbers(text: str) -> int:
+    summary = 0
+    lsttext = text.split()
+    for countwords in range(0, len(lsttext)):
+        if lsttext[countwords].isdigit(): summary += int(lsttext[countwords])
+    return summary
+
+
+def sum_numbers(text: str) -> int:
+    L = text.split()
+    ans = 0
+    for n in L:
+        if n.isdecimal():
+            ans += int(n)
+    return ans
+
+def sum_numbers(text: str) -> int:
+    # your code here
+    def numbers(t):
+        try:
+            return int(t)
+        except:
+            return 0
+    try:
+        return __import__("functools").reduce(lambda a,c: a+c,(numbers(t) for t in text.split()))
+    except:
+        return 0
