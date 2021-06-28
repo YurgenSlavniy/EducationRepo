@@ -523,7 +523,7 @@ import pickle
 # импортируем модуль. он встроен в пайтон
 person = {'name': 'Abdul', 'phones': [133,3345]}
 # открываем файл на запись байт 'wb'
-with open ('person.dat', 'wb') as f:
+with open('person.dat', 'wb') as f:
     # сразу пишем объект целиком с помощью picle
     pickle.dump(person, f)
     # берём функцию .dump() встроенную в модуле  picle в пайтон
@@ -630,7 +630,7 @@ friends = [
 print(type(friends))
 # открываем файл в режиме записи 'w'
 # здесь уже пишем текст, а не байты
-with open('friends.jon', 'w') as f:
+with open('friends.json', 'w') as f:
     # преобразуем список друзей в json и сохраняем в файл f
     json_friends = json.dumps(friends, f)
 # обратно из файла в объект открываем фай на чтение 'r'
