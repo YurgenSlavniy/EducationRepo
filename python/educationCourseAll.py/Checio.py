@@ -433,6 +433,7 @@ import re
 def beginning_zeros(number: str) -> int:
     return len(re.sub(r'[^0].*$', '', number))
 
+
 # ЗАДАЧА 13. Nearest Value
 #
 # Найдите ближайшее значение к переданному.
@@ -623,7 +624,7 @@ def correct_sentence(text: str) -> str:
     return text[0].upper()+ text[1:] +a
 
 
-# ЗАДАЧА 16
+# ЗАДАЧА 16. Is Even
 #
 # Проверить является ли число четным или нет.
 # Ваша функция должна возвращать True если число четное,
@@ -665,7 +666,7 @@ def is_even(num: int) -> bool:
     return bin(num)[-1]=='0'
 
 # -----------------------------------
-#   END ELEMENTARY 17/17
+#   END ELEMENTARY 16/16
 # -----------------------------------
 
 # -----------------------------------
@@ -673,7 +674,7 @@ def is_even(num: int) -> bool:
 # -----------------------------------
 
 
-# ЗАДАЧА 1.
+# ЗАДАЧА 1. Sum Numbers
 #
 # Вам дан текст в котором нужно просуммировать числа,
 # но только разделенные пробелом.
@@ -760,3 +761,99 @@ def sum_numbers(text: str) -> int:
         return __import__("functools").reduce(lambda a,c: a+c,(numbers(t) for t in text.split()))
     except:
         return 0
+
+
+# ЗАДАЧА 2. Even the Last
+#
+# Дан массив целых чисел.
+# Нужно найти сумму элементов с четными индексами (0-й, 2-й, 4-й итд),
+# затем перемножить эту сумму и последний элемент исходного массива.
+# Не забудьте, что первый элемент массива имеет индекс 0.
+#
+# Для пустого массива результат всегда 0 (ноль).
+#
+# Входные данные: Список (list) целых чисел (int).
+# Выходные данные: Число как целочисленное (int).
+#
+# Примеры:
+# checkio([0, 1, 2, 3, 4, 5]) == 30
+# checkio([1, 3, 5]) == 30
+# checkio([6]) == 36
+# checkio([]) == 0
+# 1
+# 2
+# 3
+# 4
+# Зачем это нужно: Индексы и срезы - очень важные элементы программирования,
+# как на Python, так и на других языках. Это поможет вам в дальнейшем.
+#
+# Предусловия: 0 ≤ len(array) ≤ 20
+# all(isinstance(x, int) for x in array)
+# all(-100 < x < 100 for x in array)
+
+def checkio(array: list) -> int:
+    """
+        sums even-indexes elements and multiply at the last
+    """
+    return sum(array[i] for i in range(len(array)) if i % 2 == 0) * array[-1] if len(array) > 0 else 0
+
+
+def checkio(array):
+    if len(array) == 0:
+        return 0
+    return sum(array[0::2]) * array[-1]
+
+
+checkio=lambda x: sum(x[::2])*x[-1] if x else 0
+
+
+def checkio(array):
+    return 0 if not array else sum(array[::2]) * array[-1]
+
+
+from itertools import islice
+def checkio(array):
+    return sum(islice(array, None, None, 2)) * array[-1] if array else 0
+
+
+def checkio(array):
+    from numpy import sum
+    if len(array) > 0:
+        return int(sum(array[::2])*array[-1])
+    else:
+        return 0
+
+import numpy as np
+
+class even_the_last:
+    def __init__(self, array):
+        array = np.array(array)
+        self.array = array
+
+    def perform(self):
+        if not self.array.shape[0]:
+            return 0
+        even_sum = np.sum(self.array[0::2])
+        last = self.array[-1]
+        return even_sum * last
+
+def checkio(array):
+    return even_the_last(array).perform()
+
+
+def checkio(array: list) -> int:
+    """
+        sums even-indexes elements and multiply at the last
+    """
+    sum = 0
+    if len(array) == 0:
+        return 0
+    else:
+        for n in range(len(array)):
+            if (n % 2) == 0:
+                sum = sum + array[n]
+            result = sum * array[-1]
+        return result
+
+
+
