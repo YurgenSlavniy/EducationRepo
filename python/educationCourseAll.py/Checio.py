@@ -16,7 +16,7 @@
 
 def mult_two(a: int, b:int) -> int:
     return a*b
-#...........................................................
+
 
 # ЗАДАЧА 2. First Word (simplified)
 #
@@ -37,7 +37,7 @@ def mult_two(a: int, b:int) -> int:
 def first_word(text: str) -> str:
 
     return text.split()[0]
-#...........................................................
+
 
 # ЗАДАЧА 3. Acceptable Password I
 #
@@ -66,7 +66,7 @@ def is_acceptable_password(password: str) -> bool:
 
 # Решение через lambda
 is_acceptable_password_lambda = lambda password: len(password) > 6
-#...........................................................
+
 
 # ЗАДАЧА 4. Number Length
 #
@@ -82,7 +82,7 @@ is_acceptable_password_lambda = lambda password: len(password) > 6
 def number_length(a: int) -> int:
     result = len(str(a))
     return result
-#...........................................................
+
 
 # ЗАДАЧА 5. End Zeros
 #
@@ -108,50 +108,48 @@ def end_zeros(num: int) -> int:
         else:
             break
     return count
-#-----------------------------------------------------------
 
 def end_zeros(num: int) -> int:
     return len(s := str(num)) - len(s.rstrip('0'))
 
 end_zeros = lambda num: len(str(num)) - len(str(num).rstrip('0'))
-#-----------------------------------------------------------
+
 import re
 def end_zeros(num: int) -> int:
     return len(re.search('0*$', str(num)).group())
-#-----------------------------------------------------------
+
 def end_zeros(number):
     n = str(number)
     return len(n) - len(n.strip('0'))
-#-----------------------------------------------------------
+
 def end_zeros(number):
     number = str(number)
     if number[-1:] != '0':
         return 0
     return 1 + end_zeros(number[:-1])
-#-----------------------------------------------------------
+
 def end_zeros(number):
     if not number:
        return 1
     if not number % 10:
        return 1 + end_zeros(number // 10)
     return 0
-#-----------------------------------------------------------
+
 def end_zeros(number):
     result = not number
     while number and not number % 10:
         number /= 10
         result += 1
     return result
-#-----------------------------------------------------------
+
 def end_zeros(number):
     en = enumerate(str(number)[::-1])
     return not number or next(i for i, x in en if x != '0')
-#-----------------------------------------------------------
+
 def end_zeros(number):
     from itertools import takewhile
     number = str(number)[::-1]
     return len(list(takewhile(lambda x: x == '0', number)))
-#...........................................................
 
 # ЗАДАЧА 6. Backward String
 #
@@ -169,12 +167,12 @@ def end_zeros(number):
 def backward_string(val: str) -> str:
     string = "".join(reversed(val))
     return string
-#-----------------------------------------------------------
+
 backward_string = lambda val: val[::-1]
-#-----------------------------------------------------------
+
 def backward_string(val: str) -> str:
     return val[::-1]
-#...........................................................
+
 
 # ЗАДАЧА 7. Remove All Before
 #
@@ -192,19 +190,19 @@ def backward_string(val: str) -> str:
 from typing import Iterable
 def remove_all_before(items: list, border: int) -> Iterable:
     return items[items.index(border):] if border in items else items
-#-----------------------------------------------------------
+
 from typing import Iterable
 def remove_all_before(items: list, border: int) -> Iterable:
     if border in items:
         del items[:items.index(border)]
     return items
-#-----------------------------------------------------------
+
 def remove_all_before(items, border):
     try:
         return items[items.index(border):]
     except ValueError:
         return items
-#-----------------------------------------------------------
+
 from typing import Iterable
 def remove_all_before(items: list, border: int) -> Iterable:
     if list == [] or border not in items:
@@ -212,7 +210,6 @@ def remove_all_before(items: list, border: int) -> Iterable:
     else:
         x = items.index(border)
         return items[x:]
-#...........................................................
 
 # ЗАДАЧА 8. All Upper I
 #
@@ -233,11 +230,11 @@ def remove_all_before(items: list, border: int) -> Iterable:
 
 def is_all_upper(text: str) -> bool:
     return text == text.upper()
-#-----------------------------------------------------------
+
 import re
 def is_all_upper(text: str) -> bool:
     return len(re.sub(r'[a-z]', '', text))==len(text)
-#-----------------------------------------------------------
+
 def is_all_upper(text: str) -> bool:
     text=text.replace(" ","")
     if text.isupper()==True:
@@ -250,7 +247,8 @@ def is_all_upper(text: str) -> bool:
         return True
     else:
         return False
-#-----------------------------------------------------------
+
+
 def is_all_upper(text: str) -> bool:
     result = True
     if not text.strip() or text.isupper() or any(char.isdigit() for char in text):
@@ -258,7 +256,7 @@ def is_all_upper(text: str) -> bool:
     elif text.islower() or (not text.islower() and not text.isupper()):
         result = False
     return result
-#...........................................................
+
 
 # ЗАДАЧА 9. Replace First
 #
@@ -281,36 +279,36 @@ def replace_first(items: list) -> Iterable:
         del items[0]
         items.append(a)
         return items
-#-----------------------------------------------------------
+
 # Change items IN-PLACE.
 def replace_first(items: list) -> list:
     if items:
         items.append(items.pop(0))
     return items
-#-----------------------------------------------------------
+
 # Slices
 def replace_first(items: list) -> list:
     return items[1:] + items[:1]
-#-----------------------------------------------------------
+
 # collections.deque have an useful method: rotate.
 from collections import deque
 def replace_first(items: list) -> deque:
     items = deque(items)
     items.rotate(-1)
     return items
-#-----------------------------------------------------------
+
 replace_first = lambda a: a[1:] + a[:1]
-#-----------------------------------------------------------
+
 from typing import Iterable
 def replace_first(items: list) -> Iterable:
     return items[1:] + items[:1]
-#-----------------------------------------------------------
+
 from typing import Iterable
 def replace_first(items: list) -> Iterable:
     if len(items) > 1:
         items.append(items.pop(0))
     return items
-#...........................................................
+
 
 # ЗАДАЧА 10. Max Digit
 #
@@ -329,19 +327,19 @@ def replace_first(items: list) -> Iterable:
 
 def max_digit(number: int) -> int:
     return int(max(i for i in str(number)))
-#-----------------------------------------------------------
+
 def max_digit(number):
     number = set(str(number))
     return int(max(number))
-#-----------------------------------------------------------
+
 def max_digit(number: int) -> int:
     text = str(number)
     for n in range(9, -1, -1):
         if str(n) in text:
             return n
-#-----------------------------------------------------------
+
 max_digit = lambda number: int(max(str(number)))
-#...........................................................
+
 
 # ЗАДАЧА 11. Split Pairs
 #
@@ -367,25 +365,25 @@ def split_pairs(a):
     n = 2
     chunks = [a[i:i+n] for i in range(0, len(a), n)]
     return chunks
-#-----------------------------------------------------------
+
 def split_pairs(a):
     return [ch1+ch2 for ch1,ch2 in zip(a[::2],a[1::2]+'_')]
-#-----------------------------------------------------------
+
 from textwrap import wrap
 def split_pairs(a):
     a = a + '_' if len(a) % 2 else a
     return wrap(a, 2)
-#-----------------------------------------------------------
+
 import itertools, operator
 def split_pairs(a):
     it = itertools.chain(a, '_')
     return map(operator.add, it, it)
-#-----------------------------------------------------------
+
 def split_pairs(s):
     N = len(s)
     if N % 2 == 1: s += "_"
     return [s[i:i+2] for i in range(0,N,2)]
-#...........................................................
+
 
 # ЗАДАЧА 12. Beginning Zeros
 #
@@ -404,7 +402,7 @@ def split_pairs(s):
 # beginning_zeros('012345679') == 1
 # beginning_zeros('0000') == 4
 # Строка может иметь цифры: 0-9
-#-----------------------------------------------------------
+
 def beginning_zeros(number: str) -> int:
     result = 0
     for n in number:
@@ -413,15 +411,15 @@ def beginning_zeros(number: str) -> int:
         else:
             return result
     return result
-#-----------------------------------------------------------
+
 beginning_zeros = lambda number: len(number) - len(number.lstrip('0'))
-#-----------------------------------------------------------
+
 from itertools import takewhile
 beginning_zeros = lambda number: len(list(takewhile(lambda x: x=='0', number)))
-#-----------------------------------------------------------
+
 def beginning_zeros(number: str) -> int:
     return (len(number)-len(number.lstrip("0")))
-#-----------------------------------------------------------
+
 def beginning_zeros(number: str) -> int:
     zero = 0
     for num in number:
@@ -430,11 +428,11 @@ def beginning_zeros(number: str) -> int:
         else:
             zero += 1
     return zero
-#-----------------------------------------------------------
+
 import re
 def beginning_zeros(number: str) -> int:
     return len(re.sub(r'[^0].*$', '', number))
-#...........................................................
+
 
 # ЗАДАЧА 13. Nearest Value
 #
@@ -466,10 +464,11 @@ def beginning_zeros(number: str) -> int:
 
 def nearest_value(values, one):
     return min({(abs(n-one), n) for n in values})[1]
-#-----------------------------------------------------------
+
+
 def nearest_value(values: set, one: int) -> int:
     return sorted(sorted(values), key=lambda x: abs(one - x))[0]
-#-----------------------------------------------------------
+
 def nearest_value(values: set, one: int) -> int:
     lista = sorted(values)
     for element in lista:
@@ -482,12 +481,12 @@ def nearest_value(values: set, one: int) -> int:
             prevDiff = diff
             nearest = element
     return nearest
-#-----------------------------------------------------------
+
 def nearest_value(values: set, one: int) -> int:
     l = list(values);
     l.sort(key=lambda x:(abs(x - one),x));
     return l[0];
-#-----------------------------------------------------------
+
 def nearest_value(values: set, one: int) -> int:
     values = list(values)
     if one in values:
@@ -511,14 +510,14 @@ def nearest_value(values: set, one: int) -> int:
                 return prev
             else:
                 return next
-#-----------------------------------------------------------
+
 def nearest_value(values: set, one: int) -> int:
     def distance(value): return abs(value - one), value > one
     return min(values, key=distance)
-#-----------------------------------------------------------
+
 def nearest_value(values: set, one: int) -> int:
     return sorted([(abs(v - one), v) for v in values], key = lambda item: (item[0], item[1]))[0][1]
-#...........................................................
+
 
 # ЗАДАЧА 14. Between Markers (simplified)
 #
@@ -541,23 +540,24 @@ def nearest_value(values: set, one: int) -> int:
 
 def between_markers(text: str, begin: str, end: str) -> str:
     return text[text.find(begin) + 1:text.find(end)]
-#-----------------------------------------------------------
+
 def between_markers(text: str, begin: str, end: str) -> str:
     text = text.split(begin)[1]
     return text.split(end)[0]
-#-----------------------------------------------------------
+
 def between_markers(text, m1, m2):
     return text[text.index(m1)+1:text.index(m2)]
-#-----------------------------------------------------------
+
 from re import finditer
 def between_markers(text, *m):
     return next(finditer((r"%s(.*)%s" % m).replace('[', '\[').replace(']', '\]'), text)).groups()[0]
-#-----------------------------------------------------------
+
+
 def between_markers(text: str, begin: str, end: str) -> str:
     b = text.find(begin)
     e = text.find(end)
     return text[b + 1:e]
-#...........................................................
+
 
 # ЗАДАЧА 15. Correct Sentence
 #
@@ -586,25 +586,25 @@ def correct_sentence(str):
         str += "."
     str = "".join(str)
     return str
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     text = text[0].upper() + text[1:]
     if text[-1] != '.':
         text = text + '.'
     return text
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     text = text[0].upper() + text[1:]
     if text[-1] != ".":
         text +='.'
     return text
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     if text[-1] == '.':
         return text[0].upper() + text[1:]
     else:
         return text[0].upper() + text[1:] + '.'
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     text = list(text)
     begin = text[0]
@@ -612,17 +612,17 @@ def correct_sentence(text: str) -> str:
     text[0] = begin if begin.isupper() else begin.upper()
     text = text if end == '.' else text + ['.']
     return ''.join(text)
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     return text[0].capitalize() + text.rstrip('.')[1:] + '.'
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     return text[0].upper() + text[1:] + '.' * (not text.endswith('.'))
-#-----------------------------------------------------------
+
 def correct_sentence(text: str) -> str:
     a='' if text[-1]=='.' else '.'
     return text[0].upper()+ text[1:] +a
-#...........................................................
+
 
 # ЗАДАЧА 16. Is Even
 #
@@ -647,21 +647,21 @@ def is_even(num: int) -> bool:
         return True
     else:
         return False
-#-----------------------------------------------------------
+
 def is_even(num: int) -> bool:
     return num & 1 == 0
-#-----------------------------------------------------------
+
 def is_even(num: int) -> bool:
     return not bool(num%2)
-#-----------------------------------------------------------
+
 def is_even(num: int) -> bool:
     return not num % 2
-#-----------------------------------------------------------
+
 def is_even(num: int) -> bool:
     if num % 2 != 1:
         return True
     return False
-#-----------------------------------------------------------
+
 def is_even(num: int) -> bool:
     return bin(num)[-1]=='0'
 
@@ -697,7 +697,8 @@ def is_even(num: int) -> bool:
 
 def sum_numbers(text: str) -> int:
     return sum(( int(word) for word in text.split() if word.isdigit()))
-#-----------------------------------------------------------
+
+
 def sum_numbers(text: str) -> int:
     s = 0
     for l in text.split():
@@ -706,7 +707,8 @@ def sum_numbers(text: str) -> int:
         except ValueError:
             continue
     return s
-#-----------------------------------------------------------
+
+
 class text_with_number:
     def __init__(self, text):
         self.text = text
@@ -716,10 +718,9 @@ class text_with_number:
             if word.isdigit():
                 answer += int(word)
         return answer
-#-----------------------------------------------------------
 def sum_numbers(text):
     return text_with_number(text).add_numbers()
-#-----------------------------------------------------------
+
 def sum_numbers(text: str) -> int:
     count = 0
     spl_text = text.split(' ')
@@ -728,18 +729,19 @@ def sum_numbers(text: str) -> int:
         if i.isnumeric():
             count += int(i)
     return count
-#-----------------------------------------------------------
+
 def sum_numbers(text: str) -> int:
     # your code here
     return sum(map(lambda x: int(x), filter(lambda x: x.isnumeric(), text.split())))
-#-----------------------------------------------------------
+
 def sum_numbers(text: str) -> int:
     summary = 0
     lsttext = text.split()
     for countwords in range(0, len(lsttext)):
         if lsttext[countwords].isdigit(): summary += int(lsttext[countwords])
     return summary
-#-----------------------------------------------------------
+
+
 def sum_numbers(text: str) -> int:
     L = text.split()
     ans = 0
@@ -747,7 +749,7 @@ def sum_numbers(text: str) -> int:
         if n.isdecimal():
             ans += int(n)
     return ans
-#-----------------------------------------------------------
+
 def sum_numbers(text: str) -> int:
     # your code here
     def numbers(t):
@@ -759,7 +761,7 @@ def sum_numbers(text: str) -> int:
         return __import__("functools").reduce(lambda a,c: a+c,(numbers(t) for t in text.split()))
     except:
         return 0
-#...........................................................
+
 
 # ЗАДАЧА 2. Even the Last
 #
@@ -794,21 +796,26 @@ def checkio(array: list) -> int:
         sums even-indexes elements and multiply at the last
     """
     return sum(array[i] for i in range(len(array)) if i % 2 == 0) * array[-1] if len(array) > 0 else 0
-#-----------------------------------------------------------
+
+
 def checkio(array):
     if len(array) == 0:
         return 0
     return sum(array[0::2]) * array[-1]
-#-----------------------------------------------------------
+
+
 checkio=lambda x: sum(x[::2])*x[-1] if x else 0
-#-----------------------------------------------------------
+
+
 def checkio(array):
     return 0 if not array else sum(array[::2]) * array[-1]
-#-----------------------------------------------------------
+
+
 from itertools import islice
 def checkio(array):
     return sum(islice(array, None, None, 2)) * array[-1] if array else 0
-#-----------------------------------------------------------
+
+
 def checkio(array):
     from numpy import sum
     if len(array) > 0:
@@ -817,7 +824,7 @@ def checkio(array):
         return 0
 
 import numpy as np
-#-----------------------------------------------------------
+
 class even_the_last:
     def __init__(self, array):
         array = np.array(array)
@@ -829,10 +836,11 @@ class even_the_last:
         even_sum = np.sum(self.array[0::2])
         last = self.array[-1]
         return even_sum * last
-#-----------------------------------------------------------
+
 def checkio(array):
     return even_the_last(array).perform()
-#-----------------------------------------------------------
+
+
 def checkio(array: list) -> int:
     """
         sums even-indexes elements and multiply at the last
@@ -846,103 +854,133 @@ def checkio(array: list) -> int:
                 sum = sum + array[n]
             result = sum * array[-1]
         return result
-#...........................................................
 
-# ЗАДАЧА 3. Three Words
-#
-# Давайте научим наших роботов отличать слова от чисел.
-# Дана строка со словами и числами, разделенными пробелами
-# (один пробел между словами и/или числами).
-# Слова состоят только из букв.
-# Вам нужно проверить есть ли в исходной строке три слова подряд .
-# Для примера,
-# в строке "start 5 one two three 7 end"
-# есть три слова подряд.
-#
-# Входные данные: Строка со словами (str).
-# Выходные данные: Ответ как логическое выражение (bool), True или False.
-#
-# Примеры:
-# checkio("Hello World hello") == True
-# checkio("He is 123 man") == False
-# checkio("1 2 3 4") == False
-# checkio("bla bla bla bla") == True
-# checkio("Hi") == False
-# 1
-# 2
-# 3
-# 4
-# 5
-# Зачем это нужно: Эта задача подскажет вам как работать со строками и покажет некоторые полезные функции.
-#
-# Предусловия: Исходная строка содержит только слова и/или числа.
-# Смешанных слов нет (перемешанные цифры и буквы).
-# 0 < len(words) < 100
 
-def checkio(words: str) -> bool:
-    count = 0
-    for i in words.split():
-        if not i.isalpha():
-            count = 0
-        else:
-            count += 1
-        if count == 3:
-            return True
-    return False
-#-----------------------------------------------------------
-def checkio(words: str) -> bool:
-    count = 0
-    word_list = list(words.split())
-    for word in word_list:
-        count = (count + 1) * word.isalpha()
-        if count == 3:
-            return True
-    else:
-        return False
-#-----------------------------------------------------------
-def checkio(words: str):
-    wl=words.split(' ')
-    tf=list(map(lambda x: bool(x.isalpha()),wl))
-    tf=''.join(str(tf))
-    return bool('True, True, True' in tf)
-#-----------------------------------------------------------
+# ЗАДАЧА 3. Right to Left
+#
+# "На протяжении веков, левши страдали от дискриминации в мире,
+# созданном для правшей."
+# Santrock, John W. (2008).
+# Motor, Sensory, and Perceptual Development.
+#
+# "Большинство людей (70-95%) правши,
+# меньшинство (5-30 %) левши,
+# и неопределеное число людей
+# вероятно лучше всего охарактеризовать,
+# как "симметричные"."
+# Scientific American.
+# www.scientificamerican.com
+#
+# Один робот был занят простой задачей:
+# объединить последовательность строк
+# в одно выражение для создания инструкции
+# по обходу корабля.
+# Но робот был левша и зачастую шутил и запутывал своих друзей правшей.
+#
+# Дана последовательность строк.
+# Вы должны объединить эти строки в блок текста,
+# разделив изначальные строки запятыми.
+# В качестве шутки над праворукими роботами,
+# вы должны заменить все вхождения слова
+# "right" на слова "left",
+# даже если это часть другого слова.
+# Все строки даны в нижнем регистре.
+#
+# Входные данные: Последовательность строк.
+# Выходные данные: Текст, как строка.
+#
+# Пример:
+#
+# left_join(("left", "right", "left", "stop")) == "left,left,left,stop"
+# left_join(("bright aright", "ok")) == "bleft aleft,ok"
+# left_join(("brightness wright",)) == "bleftness wleft"
+# left_join(("enough", "jokes")) == "enough,jokes"
+
+
+# Как это используется: Это просто пример операций,
+# использующих строки и последовательности.
+#
+# Предусловие:
+# 0 < len(phrases) < 42
+
+message_text = ("left", "right", "left", "stop")
+print(type(message_text))
+def left_change_right(message_text):
+    jointext = ','.join(message_text)
+    print(jointext)
+    print(type(jointext))
+    jointext = jointext.replace('left', 'right')
+    return jointext
+
+
+def left_join(phrases: tuple) -> str:
+    """
+        Join strings and replace "right" to "left"
+    """
+    strphrases = ','.join(phrases)
+    newstrphrases = strphrases.replace('right', 'left')
+    return newstrphrases
+
+
+
+def left_join(phrases):
+    """
+        Join strings and replace "right" to "left"
+    """
+    return (",".join(phrases)).replace("right","left")
+
+
+def left_join(phrases: tuple) -> str:
+    """
+        Join strings and replace "right" to "left"
+    """
+    phrases_string = ','.join(list(phrases))
+    return phrases_string.replace('right', 'left')
+
+
+def left_join(phrases: tuple, /) -> str:
+    """
+        Join strings and replace "right" to "left"
+    """
+
+    phrases = ",".join(list(phrases)).replace("right", "left")
+
+    return phrases
+
 import numpy as np
 
-class Three_Words:
-    def __init__(self, words):
-        self.words = words
+class right_to_left():
+    def __init__(self, phrases):
+        self.phrases = phrases
 
     def perform(self):
-        foo = np.array([w for w in self.words.split()])
-        count = 0
-        for i in range(np.size(foo)):
-            if not foo[i].isdigit():
-                count += 1
-                if count == 3:
-                    return True
-            else:
-                count = 0
+        replaced_words_array = np.array([p.replace('right', 'left') for p in self.phrases])
+        replaced_words_list = replaced_words_array.tolist()
+        return ",".join(replaced_words_list)
 
-        return False
-#-----------------------------------------------------------
-def checkio(words):
-    return Three_Words(words).perform()
-#-----------------------------------------------------------
-def checkio(words: str) -> bool:
-    successive_words = 0
+def left_join(phrases: tuple) -> str:
+    foo = right_to_left(phrases)
+    return foo.perform()
 
-    for word in words.split():
-        successive_words = (successive_words + 1 if word.isalpha() else 0)
-        if successive_words == 3:
-            return True
+def left_join(phrases):
+    return ",".join(k.replace('right', 'left') for k in phrases)
 
-    return False
-#-----------------------------------------------------------
-from itertools import groupby
+# # coding: utf-8
+# 左 = 'left'
+# 右 = 'right'
+# 点 = ','
+# 置換 = str.replace
+# 合併 = str.join
+#
+# left_join = lambda 文:置換(合併(点, 文), 右, 左)
 
-
-def checkio(words: str) -> bool:
-    words = map(str.isalpha, words.split())
-    return max(sum(j) for _, j in groupby(words)) >= 3
-#...........................................................
+def left_join(phrases):
+    """
+        Join strings and replace "right" to "left"
+    """
+    a=""
+    for i in phrases:
+        a=a+","+i
+    a=a[1:].replace("right","left")
+    return a
 
