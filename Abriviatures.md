@@ -1,5 +1,6 @@
 ### + A ###
 - API  (Application Programming Interface)  <интерфейс программирования приложений>
+- ADSL (Asymmetric Digital Subscriber Line) <асимметричная цифровая абонентская линия>
 ### + B ###
 - BIOS  (Basic Input/Output System)  <базовая система ввода-вывода>
 ### + G ###
@@ -7,9 +8,11 @@
 ### + H ###
 - HTTP   (HyperText Transfer Protocol)   <протокол передачи гипертекста>
 - HTTPS   (HyperText Transfer Protocol Secure)  <протокол передачи гипертекста защищённый>
+### + I ###
+- IT (Information Technologes) <информационные технологии>
 ### + L ###
 - LAN  (Local Area Network)   <локальная сеть>
 ### + S ###
-SQL (Structured Query Language) <язык структурированных запросов>
+- SQL (Structured Query Language) <язык структурированных запросов>
 ### + V ###
 - VPN  (Virtual Private Network)  <виртуальная частная сеть>
