@@ -14,5 +14,8 @@
 - LAN  (Local Area Network)   <локальная сеть>
 ### + S ###
 - SQL (Structured Query Language) <язык структурированных запросов>
+- SSD (Solid State Drive) <твердотельный накопитель>
 ### + V ###
 - VPN  (Virtual Private Network)  <виртуальная частная сеть>
+- VDS  (Virtual Dedicated Server) <виртуальный выделенный сервер>
+- VPS  (Virtual Private Server) <виртуальный частный сервер>
