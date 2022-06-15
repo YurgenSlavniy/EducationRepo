@@ -12,6 +12,8 @@
 - IT (Information Technologes) <информационные технологии>
 ### + L ###
 - LAN  (Local Area Network)   <локальная сеть>
+### + N ###
+- NTF (Non-Fungible Token) <невзаимозаменя́емый то́кен>
 ### + S ###
 - SQL (Structured Query Language) <язык структурированных запросов>
 - SSD (Solid State Drive) <твердотельный накопитель>
