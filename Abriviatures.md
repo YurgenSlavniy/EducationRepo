@@ -17,7 +17,12 @@
 ### + S ###
 - SQL (Structured Query Language) <язык структурированных запросов>
 - SSD (Solid State Drive) <твердотельный накопитель>
+- SSH (Secure SHell) <безопасная оболочка>
+### + T ###
+- TCP (Transmission Control Protocol) <протокол управления передачей>
 ### + V ###
 - VPN  (Virtual Private Network)  <виртуальная частная сеть>
 - VDS  (Virtual Dedicated Server) <виртуальный выделенный сервер>
 - VPS  (Virtual Private Server) <виртуальный частный сервер>
+### + U ###
+- UDP (User Datagram Protocol) <протокол пользовательских датаграмм>
