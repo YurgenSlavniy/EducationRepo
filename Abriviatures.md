@@ -5,8 +5,11 @@
 - BIOS  (Basic Input/Output System)  <базовая система ввода-вывода>
 ### + C ###
 - CMD (Сommand Line Interpreter) <интерпритатор командной строки> {Командная строка, обычно известная как cmd.exe или cmd, является интерпретатором командной строки по умолчанию для операционных систем OS / 2, [1] eComStation, ArcaOS, Microsoft Windows (семейства Windows NT и Windows CE) и ReactOS[2]. В Windows CE .NET 4.2,[3] Windows CE 5.0[4] и Windows Embedded CE 6.0 [5] он называется оболочкой командного процессора. Его реализации различаются между операционными системами, но поведение и базовый набор команд согласованы. cmd.exe является аналогом COMMAND.COM в системах DOS и Windows 9x, а также аналогично оболочкам Unix, используемым в Unix-подобных системах. Первоначальная версия cmd.exe для Windows NT была разработана Терезой Стоуэлл.[6] Windows CE 2.11 была первым встроенным выпуском Windows, поддерживающим консоль и версию Windows CE. cmd.exe [7] Реализация ReactOS cmd.exe является производным от FreeCOM, интерпретатора командной строки FreeDOS.}
-- 
-### + G ###
+
+### + D ###
+### + F ###
+- FTP () <> {}
+### + G ### 
 - GUI  (graphical user interface)  <графи́ческий интерфе́йс по́льзователя>
 - GSM (Groupe Spécial Mobile) <группа специальных мобильных>
 ### + H ###
@@ -14,20 +17,32 @@
 - HTTPS   (HyperText Transfer Protocol Secure)  <протокол передачи гипертекста защищённый>
 ### + I ###
 - IT (Information Technologes) <информационные технологии>
+### + J ###
+- JSON () <> {}
+### + K ###
 ### + L ###
 - LAN  (Local Area Network)   <локальная сеть>
 - LTE (Long-Term Evolution) <долговременное развитие>
+### + M ###
 ### + N ###
 - NTF (Non-Fungible Token) <невзаимозаменя́емый то́кен>
+### + O ###
+### + P ###
+### + Q ###
+### + R ###
 ### + S ###
 - SQL (Structured Query Language) <язык структурированных запросов>
 - SSD (Solid State Drive) <твердотельный накопитель>
 - SSH (Secure SHell) <безопасная оболочка>
 ### + T ###
 - TCP (Transmission Control Protocol) <протокол управления передачей>
+### + U ###
+- UDP (User Datagram Protocol) <протокол пользовательских датаграмм>
 ### + V ###
 - VPN  (Virtual Private Network)  <виртуальная частная сеть>
 - VDS  (Virtual Dedicated Server) <виртуальный выделенный сервер>
 - VPS  (Virtual Private Server) <виртуальный частный сервер>
-### + U ###
-- UDP (User Datagram Protocol) <протокол пользовательских датаграмм>
+### + W ###
+### + X ###
+### + Y ###
+### + Z ###
