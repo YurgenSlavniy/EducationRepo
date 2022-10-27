@@ -131,3 +131,45 @@ urlpatterns = [
 23) ctrl + с - останавливаем сервер
 24) deactivate - диактивируем виртуальной среды
 ### Шаблоны ###
+25) cd edutest_app - переходим в папку с приложением 
+26) mkdir templates - создаём в папке с приложением папку для шаблонов
+27) сd templates - переходим во вновь зозданную папку
+28) nano index.html - создаём файл формата html и пишем в этом файле код страницы
+```
+index.html
+_______________________
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django на METANIT.COM</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h2>Hello METANIT.COM</h2>
+</body>
+</html>
+```
+29) cd .. - возвращаемся в папку с приложением
+30) nano views.py  - вносим изменения в файл с представлениями
+```python
+views.py
+_______________________
+from django.shortcuts import render
+ 
+def index(request):
+    return render(request, "index.html")
+```
+31) cd .. 
+32) cd edutest
+33) nano urls.py 
+```python
+urls.py
+_______________________
+from django.urls import path
+from firstapp import views
+ 
+urlpatterns = [
+    path("", views.index),
+]
+```
+34) 
