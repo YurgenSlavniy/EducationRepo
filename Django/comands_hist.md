@@ -172,4 +172,4 @@ urlpatterns = [
     path("", views.index),
 ]
 ```
-34) 
+34) pip install requests
