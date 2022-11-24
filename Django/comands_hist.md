@@ -173,3 +173,4 @@ urlpatterns = [
 ]
 ```
 34) pip install requests
+35) python manage.py migrate
