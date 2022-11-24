@@ -172,6 +172,7 @@ urlpatterns = [
     path("", views.index),
 ]
 ```
-34) pip install requests
-35) python manage.py migrate
-36) python manage.py makemigrations
+34) pip install requests  - устанавливаем пакет для интернет соединений
+35) python manage.py migrate - выполняем миграции имеющихся бд по умолчанию
+36) python manage.py makemigrations - после того как  в файле models.py мы создали модель делаем миграцию чтобы она появилась в файле 
+37) python manage.py migrate - выполняем миграцию новой модели
