@@ -119,3 +119,9 @@ An independent research lab exploring new mediums of thought and expanding the i
 https://roomgpt.io/dream
 
 Generate your dream room. Note: We're temporarily limiting generations to 3 per day because of high traffic. Choose your room theme. Modern. Choose your room type. Living Room. Upload a picture of your room. Side by Side. Compare.
+
+### 23. `TopGG`
+https://top.gg/servers
+
+Эта нейросеть рисует обнаженных женщин. Unstable Diffusion обходит все ограничения и генерит любые детализированные изображения без цензуры. Unstable Diffusion обучали в том числе на аниме. Самый простой способ собрать свою идеальную вайфу.
+
