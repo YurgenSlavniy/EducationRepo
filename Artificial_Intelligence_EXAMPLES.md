@@ -115,3 +115,7 @@ https://www.midjourney.com/home/
 
 An independent research lab exploring new mediums of thought and expanding the imaginative powers of the human species.
 
+### 22. `roomGPT`
+https://roomgpt.io/dream
+
+Generate your dream room. Note: We're temporarily limiting generations to 3 per day because of high traffic. Choose your room theme. Modern. Choose your room type. Living Room. Upload a picture of your room. Side by Side. Compare.
