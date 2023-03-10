@@ -125,3 +125,173 @@ https://top.gg/servers
 
 Эта нейросеть рисует обнаженных женщин. Unstable Diffusion обходит все ограничения и генерит любые детализированные изображения без цензуры. Unstable Diffusion обучали в том числе на аниме. Самый простой способ собрать свою идеальную вайфу.
 
+# Нейронки на все случаи жизни. 
+Для учёбы, монтажа, кодинга, дизайна, работы со звуком, улучшения фото и даже для устройства на работу — сохраняйте эту эпичную подборку себе.
+
+Для учёбы
+
+MathGPT (https://mathgpt.streamlit.app/)  (https://mathgpt.streamlit.app/)— (https://mathgpt.streamlit.app/) подсобит с матаном.
+editGPT (https://chrome.google.com/webstore/detail/editgpt/mognjodfeldknhobgbnkoomipkmlnnhk) — исправит ошибки в тексте на английском.
+Consensus (https://consensus.app/) — огромная научная база знаний на основе ИИ.
+ExamCram — (https://apps.apple.com/us/app/examcram-ai-for-students/id1595934993/) превратит сложные учебные материалы в карточки и тесты для самопроверки.
+Yip (https://yippity.io/home) — то же самое, но в вебе и с поддержкой Википедии.
+YouTube Summary with ChatGPT (https://chrome.google.com/webstore/detail/youtube-summary-with-chat/nmmicjeknamkfloonkhhcjmomieiodli/related) — превратит любое обучающее видео или лекцию в текст.
+ChatBA — (https://www.chatba.com/) поможет сделать презентацию.
+Explain Me Like I’m Five (https://explainlikeimfive.io/) — объяснит заумные вещи простым языком.
+
+Для программистов
+
+Adrenaline (https://useadrenaline.com/) — исправит ошибки в коде.
+Tabnine (https://www.tabnine.com/) — допишет код за вас.
+CodePal — (https://codepal.ai/) напишет код, исправит баги и выдаст ревью.
+Code GPT (https://marketplace.visualstudio.com/items?itemName=DanielSanMedium.dscodegpt) — плагин-генератор кода для VSCode.
+Autobackend (https://www.autobackend.dev/) — поможет с бэкендом.
+Codesnippets (https://codesnippets.ai/) — генерит код из текстовых запросов, подходит для команд.
+Buildt AI — (https://marketplace.visualstudio.com/items?itemName=BuildtAI.buildt-vscode) поисковик для VSCode, найдет готовый код в инете.
+
+Для дизайнеров
+
+Booth ai (https://www.booth.ai/) — генерирует стоковые фото по текстовому запросу.
+AdCreative (https://www.adcreative.ai/) — генерит баннеры и другие рекламные креативы.
+SiteKick (https://www.sitekick.ai/) — ИИ-конструктор лендингов.
+RoomGPT (https://www.roomgpt.io/) — сделает ремонт в вашей комнате с любым дизайном.
+Looka (https://looka.com/) — генератор логотипов.
+PatternedAI — (https://www.patterned.ai/) генерирует паттерны.
+Hama — (https://www.hama.app/cleanup) Удаляет лишнее с картинки.
+
+Для улучшения фото 
+
+Photoroom — (https://app.photoroom.com/) меняйте фон, вырезайте объекты в пару движений. Есть мобильные версии.
+Nostalgia Photo (https://www.nostalgia.photo/) — сделает старые фото чётче.
+Pallete fm — (https://palette.fm/) раскрасит чёрно-белые фото.
+Relight (https://clipdrop.co/relight) — поможе заново выставить свет на уже сделанном фото.
+Picsart — (https://t.me/whackdoor/3422) заменит ваших бывших на собаку, флаг или батон.
+LeiaPix (https://convert.leiapix.com/) — сделает из 2D-фотки 3D.
+
+Для создания видео
+
+Сolourlab AI — (https://colourlab.ai/) ИИ поможет с цветокором.
+Luma AI (https://t.me/whackdoor/3371) — выдаст 3D-сцену киношного качества из нескольких фоток.
+Kaiber (https://www.kaiber.ai/) — с этой штукой делали свежий клип Linkin Park.
+Topaz Video AI — (https://www.topazlabs.com/topaz-video-ai) апнет видос до 4К и 60 FPS, уберёт тряску.
+SpiritMe — (https://apps.apple.com/ru/app/spiritme/id1615635565) создаст вашу говорящую цифровую копию.
+CapCut — (https://www.capcut.com/) поменяет фон, переведет речь в сабы и многое другое. Прямо в браузере.
+vidyo ai — (https://vidyo.ai/) быстро нарежете длинные видосы в шортсы,
+
+Для работы со звуком
+
+Fadr — (https://fadr.com/) порежет трек на отдельные дорожки инструментов и вокала.
+Adobe Enhance (https://podcast.adobe.com/enhance)  — чистит запись от шумов. Бесплатно.
+Elevenlabs (https://beta.elevenlabs.io/) — мощнейший синтезатор, подделает любой голос.
+Beatoven (https://www.beatoven.ai/)  — ИИ-композитор музыки для видео.
+Clip audio — (https://www.clip.audio/) подберет музыку для любого видоса.
+The MetaVoice (https://themetavoice.xyz/)  — меняйте свой голос на один из восьми пресетов.
+Cleanvoice (https://cleanvoice.ai/)  — уберет из вашей разговорной записи мусор,
+
+Для устройства на работу
+
+kickresume — (https://www.kickresume.com/en/ai-cover-letter-writer/) напишет резюме и сопроводительное.
+Сover Letter AI — (https://coverletterai.app/) составит сопроводительное на основе резюме. 
+InterviewGPT AI (https://interviewgpt.ai/) — имитирует собеседование и помогает готовиться.
+Resume Worded — (https://resumeworded.com/) прокачает резюме и профиль на LinkedIn.
+Interview Warmup (https://grow.google/certificates/interview-warmup/) — разогреет перед собеседованием.
+
+Для прокачки поиска в интернете
+
+Lexii ai (https://lexii.ai/) — чат-бот, которые отвечает за слова и прикладывает ссылки на источники. 
+Perplexity (https://www.perplexity.ai/) — мощнейший ИИ-поиск, работает и как расширение для браузера.
+Chord (https://chord.ooo/) — выдаст подробнейший реферат в ответ на ваш запрос.
+Phind (https://www.phind.com/) — поисковик для технарей, умеет в код.
+Nuclia (https://nuclia.com/) — найдет что угодно на сервере, накопителе и облачном диске.
+
+Для развлечений
+
+Natural Language Playlist — (https://www.naturallanguageplaylist.com/) 7-часовой музыкальный плейлист по любому запросу.
+Movie Deep Search (https://deepsearch.mycelebs.com/movie) — подыщет фильм под любой запрос.
+RadioGPT (https://listen.streamon.fm/radiogpt) — ИИ-диджеи ведут эфиры.
+EndlessVN — (https://endlessvn.io/) у всех визуальных новелл есть финал. Кроме этой.
+FashionAdvisor AI — (https://www.fashionadvisorai.com/) личный ИИ-стилист.
+Tattoos AI — (https://www.tattoosai.com/?ref=futurepedia) генерирует эскизы для тату.
+Hello History — (https://play.google.com/store/apps/details?id=com.hello.history&hl=en_US&gl=US&pli=1) даст пообщаться с ИИ-двойником известной исторической личности.
+Cool Gift Ideas (https://www.coolgiftideas.io/) — опишите человека и сервис подберёт под него подарок.
+Endel — (https://endel.io/) генератор ИИ-музыки, поможет расслабиться и выспаться. 
+PlaylistAI — (https://apps.apple.com/us/app/ai-playlist-maker-playlistai/id1631703551?uo=4) соберет плейлист в Apple и Spotify по тексту или картинке.
+
+1. https://creator.nightcafe.studio/ (генерация изображений и видосов)
+2. https://openai.com/dall-e-2/ (создает, дорисовывает, добавляет объекты на изображение, регистрация по не русскому номеру)
+3. https://deepdreamgenerator.com/ (создание реалистичных изображений в заданных стилях)
+4. https://www.artbreeder.com/ (генерация изображений в большом количестве и сортировка по папкам)
+5. https://aiportraits.com/ (создание похожего портрета в хорошем качестве)
+6. https://deepai.org/
+7. https://www.starryai.com/ (генератор nft)
+8. https://www.fotor.com/ (nft-искусство)
+9. https://runwayml.com/ (монтаж и редактор видео, анимация и 3d-модели)
+10. https://www.wombo.art/ (сюррреалистичные дизайны, превращает фото в мультфильмы)
+11. https://images.ai/ (классека!)
+12. https://thispersondoesnotexist.com/ (генерирует портрет несуществующего человека)
+13. http://smartsketch.xyz/ (превращает схематичные изображения в произведения искусства)
+14. https://looka.com (https://looka.com/) и https://www.logoai.com/ (рисует логотипы)
+15. https://artsexperiments.withgoogle.com/poemportraits (накладывает текст на портрет)
+16. https://www.remove.bg/ и https://retoucher.online/ru (удаляет фон с фотографии)
+17. https://colorize.cc/ (раскрашивает чб фотографии)
+18. https://dream.ai/create и https://hotpot.ai/art-generator (картинки по описанию, без регистрации)
+19. https://reflect.tech/ (заменяет лицо на фото)
+20. https://stablediffusionweb.com/ (генерирует картинки по текстовому описанию, без регистрации)
+21. https://www.midjourney.com/home/ (аватары в разном стиле, объединяет картинки в одну, генерирует по текстовому описанию)
+22. https://www.ostagram.me/ (соединяет в одну стили разных картин)
+23. http://gaugan.org/gaugan2/ (картинки на основе эскизы и по текстовому описанию)
+24. https://www.myheritage.com/deep-nostalgia (анимирует фотографии)
+25. https://sketch.metademolab.com/ (оживляет скетчи и детские рисунки)
+26. https://imglarger.com/ и https://icons8.ru/upscaler и https://vanceai.com/ и https://waifu2x.udp.jp/index.ru.html и https://bigjpg.com/ и https://letsenhance.io/ (улучшает качество изображений)
+27. https://lexica.art/ (вся ai-графика)
+28. https://vidyo.ai/ (делает из видео тиктоки, рилсы и коротюльки для ютюба)
+29. https://beta.tome.app/ и https://www.beautiful.ai/ (создание презентаций по картинкам с описанием)
+30. https://www.creatosaurus.io/ (вообще всё в одном месте)
+31. https://rudalle.ru/ (нейронка от сбера)
+32. https://www.craiyon.com/ (генерит 9 картинок из 1 изображения в один клик, без регистрации)
+33. https://prisma-ai.com/lensa (забытая классика)
+34. https://h5.tu.qq.com/web/ai-2d/cartoon/index (превращает фото в аниме)
+35. https://uizard.io/ (делает макет сайта по наброску от руки)
+36. http://goart.fotor.com/ (стилизует фотографию под известные портреты или картины)
+37. http://deepangel.media.mit.edu/ (удаляет с изображения людей или объекты)
+38. https://experiments.withgoogle.com/cartoonify (превращает фотографию в мультяшку)
+39. https://fusionbrain.ai/ (всё на русском, бесплатно и без регистрации)
+40. https://dezgo.com/ (генерация картинок без цензуры)
+41. https://mage.space/ и https://avyn.com/ (обычная понятная удобная генерация картинок, без ограничений)
+42. http://cvl-demos.cs.nott.ac.uk/vrn/ (делает из 2D в 3D)
+43.
+ТЕКСТ И ДАННЫЕ:
+1. https://books.google.com/talktobooks/ (отвечает цитатами из книг)
+2. https://yandex.ru/lab/yalm (дописывает текст)
+3. https://www.smartwriter.ai/ (создает качественные тексты и ответы, продажи и маркетинг)
+4. https://www.grammarly.com/ (лучшее для англоязычной переписки)
+5. https://www.deepl.com/translator-mobile (ai-переводчик)
+6. https://analisa.io/ (аналитика для социальных сетей)
+7. https://texts.com/ (все мессенджеры в одном окне)
+8. https://yandex.ru/autopoet/ (стихи от яндекса)
+9. https://app.inferkit.com/demo (осмысленные тексты на вашей основе)
+10. https://smodin.io (https://smodin.io/) (качественные тексты по заголовку: сочинения, статьи)
+11. https://huggingface.co/tasks/text-generation и https://huggingface.co/bigscience/bloom (очень качественная работа с текстом)
+12. https://anyword.com/ (удобно, короткие посты и статьи, бесплатно 7 дней)
+13. https://namelix.com/ (нейминг, придумывает название для ваших идей и бизнесов по ключевым словам)
+14. t.me/ChatGPT_WeeziBot (бот в телеграмме, понимает русский, отвечает на вопросы, пишет короткие посты и статьи по заголовку)
+ГОЛОС И ЗВУКИ:
+1. https://voice.headliner.app/ (озвучка голосом известных людей)
+2. https://imaginarysoundscape.net/ (озвучка фотографий)
+3. https://www.riffusion.com/ (генерирует музыку по текстовому описанию)
+4. https://podcast.adobe.com/enhance (повышает качество аудио до уровня студийного)
+5. https://otter.ai/ (превращает запись звонков в текст, удобно для телефонных переговоров)
+6. https://experiments.withgoogle.com/sound-maker (создание собственных звуков)
+7. https://experiments.withgoogle.com/scribbling-speech (превращает речь в анимацию в реальном времени)
+Нафига ИИ пиарщикам и маркетологам:
+https://rb.ru/opinion/ai-pr/
+Сборники/обзоры:
+https://rb.ru/story/ai-art-generators/
+https://rb.ru/list/the-most-interesting-neural-networks/
+https://rb.ru/opinion/ai-pr/
+https://rb.ru/opinion/23-neural-networks/
+https://rb.ru/story/10-generatorov-video/
+https://rb.ru/story/ai-creative-instruments/
+https://pikabu.ru/.../21_sayt_gde_mozhno_protestirovat...
+https://vc.ru/.../624.../585040-luchshie-neyroseti-2023-goda
+https://pikabu.ru/.../ailib__katalog_bolee_900_neyrosetey... - 900 нейросетей!
