@@ -101,6 +101,218 @@ No thanks, just start my download.
 ~$: sudo mysql
 ```
 # __________
+# Установка MySQL в Ubuntu 20.04
+
+MySQL — это система управления базами данных с открытым исходным кодом, которая, как правило, устанавливается в составе популярного стека LAMP (Linux, Apache, MySQL, PHP/Python/Perl). Она использует реляционную модель и язык структурированных запросов (SQL) для управления данными.
+
+В этом обучающем руководстве мы рассмотрим, как установить 8-ю версию MySQL на сервер Ubuntu 20.04. В результате вы получите рабочую реляционную базу данных, которую вы сможете использовать для создания следующего сайта или приложения.
+
+Для данного обучающего руководства вам потребуется следующее:
+- Один сервер Ubuntu 20.04, non-root user с правами администратора и брандмаузэр, настроенный с помощью UFW. Чтобы выполнить настройку, воспользуйтесь руководством по первоначальной настройке сервера Ubuntu 20.04.
+
+ ### Шаг 1 — Установка MySQL
+
+На Ubuntu 20.04 вы можете установить MySQL с помощью репозитория пакетов APT. На момент написания этого руководства в репозитории Ubuntu по умолчанию доступна версия MySQL 8.0.19.
+
+Для установки обновите индекс пакетов на вашем сервере, если еще не сделали этого:
+```
+    sudo apt update
+```
+Затем выполните установку пакета mysql-server:
+```
+    sudo apt install mysql-server
+```
+В этом случае установка MySQL будет выполнена без запроса настройки пароля или внесения других изменений в конфигурацию. Поскольку при этом установка MySQL остается уязвимой, мы исправим это в следующем шаге.
+
+### Шаг 2 — Настройка MySQL
+
+Для новых установок MySQL необходимо запустить встроенный в СУБД скрипт безопасности. Этот скрипт меняет ряд наименее защищенных опций, используемых по умолчанию, для таких функций, как, например, удаленный вход для пользователя root и тестовые пользователи.
+
+Запустите скрипт безопасности с помощью команды sudo:
+```
+    sudo mysql_secure_installation
+```
+При этом откроется серия диалогов, где вы сможете внести некоторые изменения в параметры безопасности установки MySQL. В первом запросе вам предложат определить, хотите ли вы настроить плагин валидации пароля, который вы можете использовать для проверки надежности вашего пароля MySQL.
+
+Если вы решите использовать плагин валидации пароля, скрипт предложит вам выбрать уровень валидации пароля. Самый высокий уровень, который можно установить, указав 2, требует, чтобы ваш пароль был длиной не менее восьми символов и содержал строчные, заглавные буквы, цифры и специальные символы.
+```
+Output
+Securing the MySQL server deployment.
+
+Connecting to MySQL using a blank password.
+
+VALIDATE PASSWORD COMPONENT can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD component?
+
+Press y|Y for Yes, any other key for No: Y
+
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG:
+ 2
+```
+Независимо от того, захотите ли вы выполнить настройку плагина валидации пароля, в следующем запросе вас попросят установить пароль для пользователя root MySQL. Введите и подтвердите безопасный пароль по вашему выбору:
+```
+Output
+Please set the password for root here.
+
+New password:
+
+Re-enter new password:
+```
+Если вы использовали плагин валидации пароля, то получите информацию о надежности вашего нового пароля. Затем скрипт спросит, хотите ли вы продолжить использовать пароль, который вы только что ввели, или хотите ввести новый пароль. Если вы удовлетворены надежностью пароля, который вы только что ввели, введите Y для продолжения:
+```
+Output
+Estimated strength of the password: 100
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : Y
+```
+Далее вы можете использовать клавиши Y и ENTER, чтобы принять ответы по умолчанию для всех последующих вопросов. Выбрав эти ответы, вы удалите ряд анонимных пользователей и тестовую базу данных, отключите возможность удаленного входа пользователя root и загрузите новые правила, чтобы внесенные изменения немедленно активировались в MySQL.
+
+Обратите внимание, что несмотря на то, что вы установили пароль для root user MySQL, аутентификация с помощью пароля при подключении к оболочке MySQL для этого пользователя не настроена. Если необходимо, вы можете изменить эту настройку в шаге 3.
+
+### Шаг 3 — Настройка аутентификации и прав пользователя (опционально)
+
+В системах Ubuntu при запуске MySQL 5.7 (и более поздние версии) для root пользователя MySQL по умолчанию устанавливается аутентификация с помощью плагина auth_socket, а не пароля. Во многих случаях это обеспечивает более высокую безопасность и удобство, однако это также может осложнить ситуацию, если вам нужно предоставить доступ к пользователю внешней программе (например, phpMyAdmin).
+
+Для использования пароля для подключения к MySQL в качестве root пользователя необходимо изменить метод аутентификации с auth_socket на другой плагин, например caching_sha2_password или mysql_native_password. Для этого откройте командную строку MySQL через терминал:
+```
+    sudo mysql
+```
+Затем проверьте, какой метод аутентификации используют ваши аккаунты пользователей MySQL с помощью следующей команды:
+```
+    SELECT user,authentication_string,plugin,host FROM mysql.user;
+```
+```
+Output
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| user             | authentication_string                                                  | plugin                | host      |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| debian-sys-maint | $A$005$lS|M#3K #XslZ.xXUq.crEqTjMvhgOIX7B/zki5DeLA3JB9nh0KwENtwQ4 | caching_sha2_password | localhost |
+| mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| root             |                                                                        | auth_socket           | localhost |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+5 rows in set (0.00 sec)
+```
+В этом примере вы можете видеть, что root пользователь действительно использует метод аутентификации с помощью плагина auth_socket. Для настройки учетной записи root на использование метода аутентификации с помощью пароля запустите команду ALTER USER​​​, чтобы изменить используемый плагин аутентификации и установить новый пароль.
+
+Не забудьте изменить password​​​ на более надежный пароль и убедитесь, что эта команда заменит пароль root, заданный на шаге 2:
+```
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
+```
+Примечание. Предыдущее выражение ALTER USER устанавливает аутентификацию root user MySQL с помощью плагина caching_sha2_password​​. Согласно официальной документации MySQL, caching_sha2_password​​​ считается предпочтительным плагином аутентификации MySQL, так как он обеспечивает более защищенное шифрование пароля, чем более старая, но все еще широко используемая версия mysql_native_password.
+
+Однако многие приложения PHP, например phpMyAdmin, работают ненадежно с caching_sha2_password. Если вы планируете использовать эту базу данных с приложением PHP, возможно, вам потребуется установить аутентификацию root с помощью mysql_native_password​​:
+```
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+Затем выполните команду FLUSH PRIVILEGES, которая просит сервер перезагрузить предоставленные таблицы и ввести в действие изменения:
+```
+    FLUSH PRIVILEGES;
+```
+Проверьте методы аутентификации, применяемые для каждого из ваших пользователей, чтобы подтвердить, что root-пользователь больше не использует для аутентификации плагин auth_socket:
+```
+    SELECT user,authentication_string,plugin,host FROM mysql.user;
+```
+Output
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| user             | authentication_string                                                  | plugin                | host      |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| debian-sys-maint | $A$005$lS|M#3K #XslZ.xXUq.crEqTjMvhgOIX7B/zki5DeLA3JB9nh0KwENtwQ4 | caching_sha2_password | localhost |
+| mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| root             | *3636DACC8616D997782ADD0839F92C1571D6D78F                              | caching_sha2_password | localhost |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+5 rows in set (0.00 sec)
+
+Результаты данного примера показывают, что теперь root user MySQL проходит аутентификацию с помощью caching_sha2_password. Убедившись в этом на своем сервере, вы можете выйти из оболочки MySQL:
+```
+    exit
+```
+В качестве альтернативного варианта кто-то может посчитать, что для его рабочего процесса лучше подходит подключение к MySQL с помощью специально выделенного пользователя. Для создания такого пользователя откройте оболочку MySQL еще раз:
+
+    sudo mysql
+
+Примечание. Если у вас активирована аутентификация root​​ с помощью пароля, как описано в предыдущих параграфах, вам потребуется использовать другую команду для доступа к оболочке MySQL. Следующая команда будет запускать ваш клиент MySQL с обычными правами пользователя, и вы получите права администратора внутри базы данных только с помощью аутентификации:
+
+    mysql -u root -p
+
+Создайте нового пользователя и придумайте для него надежный пароль:
+
+    CREATE USER 'sammy'@'localhost' IDENTIFIED BY 'password';
+
+Затем предоставьте вашему новому пользователю соответствующие права. Например, вы можете предоставить пользователю права доступа ко всем таблицам в базе данных, а также можете добавлять, изменять и удалять права пользователя с помощью этой команды:
+
+    GRANT ALL PRIVILEGES ON *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
+
+Обратите внимание, что на данный момент вам не нужно запускать команду FLUSH PRIVILEGES снова. Данная команда нужна только при изменении предоставленных таблиц с применением таких выражений, как INSERT, UPDATE или DELETE. Поскольку вы создали нового пользователя вместо изменения существующего, команда FLUSH PRIVILEGES​​​ не требуется.
+
+После этого выйдите из оболочки MySQL:
+```
+    exit
+```
+В заключение проверим установку MySQL.
+
+Шаг 4 — Тестирование MySQL
+
+Независимо от способа установки MySQL должна запускаться автоматически. Чтобы проверить это, проверьте ее статус.
+```
+    systemctl status mysql.service
+```
+Результат будет выглядеть примерно так:
+```
+Output
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2020-04-21 12:56:48 UTC; 6min ago
+   Main PID: 10382 (mysqld)
+     Status: "Server is operational"
+      Tasks: 39 (limit: 1137)
+     Memory: 370.0M
+     CGroup: /system.slice/mysql.service
+             └─10382 /usr/sbin/mysqld
+```
+Если MySQL не запускается, можно активировать ее с помощью команды sudo systemctl start mysql.
+
+В качестве дополнительной проверки вы можете попробовать подключиться к базе данных с помощью инструмента mysqladmin, который позволяет запускать команды администрирования. Например, эта команда позволяет подключиться к MySQL в качестве пользователя root (-u root), запросить пароль (-p) и обеспечить возврат версии.
+```
+    sudo mysqladmin -p -u root version
+```
+Результат должен выглядеть примерно следующим образом:
+```
+Output
+mysqladmin  Ver 8.0.19-0ubuntu5 for Linux on x86_64 ((Ubuntu))
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Server version		8.0.19-0ubuntu5
+Protocol version	10
+Connection		Localhost via UNIX socket
+UNIX socket		/var/run/mysqld/mysqld.sock
+Uptime:			10 min 44 sec
+
+Threads: 2  Questions: 25  Slow queries: 0  Opens: 149  Flush tables: 3  Open tables: 69  Queries per second avg: 0.038
+```
+Это означает, что система MySQL запущена и работает.
+
+### Заключение
+
+Теперь на вашем сервере установлена базовая версия MySQL. Ниже представлены несколько примеров следующих возможных шагов:
+
+- Настройка стека LAMP
+- Практика работы с запросами с помощью SQL
+# __________
 
 Выбираем `MySQL 8.0 Command line Client` открывается окно терминала в котором нам нужно ввести свой рутовый пароль.
 
