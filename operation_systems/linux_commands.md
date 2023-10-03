@@ -1,3 +1,18 @@
-`apt list --installed` список установленных пакетов
-`sudo apt install _ИМЯ_ПАКЕТА_` установка пакета
-`sudo apt remove имя_пакета` удалние пакета
+- `apt list --installed` список установленных пакетов
+- `sudo apt install _ИМЯ_ПАКЕТА_` установка пакета
+- `sudo apt remove имя_пакета` удалние пакета
+- `sudo apt update`  Обновление базы данных доступных пакетов
+- `sudo apt upgrade` Обновление пакетов
+- `sudo apt full-upgrade` Обновление пакетов с удалением старых версий
+- `sudo apt update && sudo apt upgrade -y` совместное выполнение команд. (-y позволяет пользователю не подтверждать обновление каждого пакета перед его установкой.)
+- `sudo apt install package_1 package_2 package_3` Установка нескольких пакетов одновременно
+- `sudo apt install package_1 --no-upgrade` Установка пакета без его обновления
+- `sudo apt install package_name --only-upgrade` Обновление пакета без установки
+- `sudo apt install package_name=version_number` Установка конкретной версии пакета
+- `sudo apt remove package_name` Удаление пакетов. Удаляет все двоичные файлы пакета, но сохраняет файлы с настройками;
+- `sudo apt purge package_name` Удаление пакетов. Удаляет и сам пакет, и его файлы настроек.
+- `apt search package_name` Поиск пакетов
+- `apt show package_name` Просмотр информации о пакете
+- `apt list --upgradeable` Вывод списка обновлений (установленных и доступных)
+- `apt list --all-versions` все пакеты, доступные для вашей операционной системы
+- `sudo apt autoremove` для очистки системы
