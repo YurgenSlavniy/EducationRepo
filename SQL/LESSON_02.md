@@ -685,416 +685,454 @@ mysql> HELP DESCRIBE;
 откроет помощь прямо в коноле
 
 # ВВЕДЕНИЕ В SQL
-# ЧИСЛОВЫЕ И СТРОКОВЫЕ ТИПЫ ДАННЫХ
-# КАЛЕНДАРНЫЕ ТИПЫ ДАННЫХ И МНОЖЕСТВА
-# ИНДЕКСЫ
-# CRUD-ОПЕРАЦИИ
+- ЧИСЛОВЫЕ И СТРОКОВЫЕ ТИПЫ ДАННЫХ
+- КАЛЕНДАРНЫЕ ТИПЫ ДАННЫХ И МНОЖЕСТВА
+- ИНДЕКСЫ
+- CRUD-ОПЕРАЦИИ
 
-# ВВЕДЕНИЕ В SQL
-# - стандарт sql
-# - Описание данных DDL
-# - управление данными DML
-# - комментарии
-# - ключевые слова
-# - кавычки и их использование
+### ВВЕДЕНИЕ В SQL
+- стандарт sql
+- Описание данных DDL
+- управление данными DML
+- комментарии
+- ключевые слова
+- кавычки и их использование
 
 # SQL - STRUCTURED QUERY LANGUAGE
-# язык для интерактивного общения с СУБД
-# Достоинства:
-# - декларативная природа
-# - высокоуровневая структура
-# - высокая эффективность обработки множеств
-# - независимость от конкретных СУБД
-# - межплатформенная переносимость
-# - наличие стандартов
+Язык для интерактивного общения с СУБД
 
-# Недостатки:
-# - слабоструктурированый язык
-# - язык старый
-# - Плохо взаимодействует с ООП-языками
-# - SQL - не универсальный язык
-# - Множество диалектов
+Достоинства:
+- декларативная природа
+- высокоуровневая структура
+- высокая эффективность обработки множеств
+- независимость от конкретных СУБД
+- межплатформенная переносимость
+- наличие стандартов
 
-# Элементы языка:
-# - комментарии
-# - скалярные выражения
-# - ключевые слова
-# - операторы
-# - таблицы
-# - столбцы
-# - индексы
-# - предопределенные функции
-# - представления
-# - переменные
-# - хранимые процедуры
-# - хранимые функции
-# - триггенры
-# - коды ошибок
+Недостатки:
+- слабоструктурированый язык
+- язык старый
+- Плохо взаимодействует с ООП-языками
+- SQL - не универсальный язык
+- Множество диалектов
 
-# КОММЕНТАРИИ .
-# Односрочные начинаются с 2 ух символов дефиса --
-# -- это однострочный комментарий
-# /* многострочный комментарий */
+Элементы языка:
+- комментарии
+- скалярные выражения
+- ключевые слова
+ операторы
+- таблицы
+- столбцы
+- индексы
+- предопределенные функции
+- представления
+- переменные
+- хранимые процедуры
+- хранимые функции
+- триггенры
+- коды ошибок
 
-# DDL (Data Definition Language) - язык описания данных
-# инструкция создания, удаления, редактирования бд и таблиц
-# операторы позволяющие воссоздать структуру БД
-# DML (Data Manipulation Language) - язык управления данных
-# запросы на зоздание, удаление и извлечения данных из бд
-# из таблиц. Операторы обслуживающие данные которые хронятся внутри бд
+### КОММЕНТАРИИ .
+Односрочные начинаются с 2 ух символов дефиса `--`. `--` это однострочный комментарий
 
-# структура запроса
-#   mysql> SELECT id, name FROM users WHERE name='Игорь'
-# ключевые слова : SELECT FROM WHERE
-# SELECT id, name  (id, name - столбцы)
-# FROM users (users - тблица)
-# WHERE name='Игорь' ( name='Игорь' - скалярное выражение)
+`/* многострочный комментарий */`
 
-# скалярные выражения - числа и строки. фактически это константы
-#   mysql> SELECT 'Hello db!'
-# 'Hello db!' - скалярное выражение
+### DDL (Data Definition Language) - язык описания данных
+
+Инструкция создания, удаления, редактирования бд и таблиц, операторы позволяющие воссоздать структуру БД
+
+### DML (Data Manipulation Language) - язык управления данных
+
+Запросы на зоздание, удаление и извлечения данных из бд из таблиц. Операторы обслуживающие данные которые хронятся внутри бд
+
+### структура запроса
+```
+mysql> SELECT id, name FROM users WHERE name='Игорь'
+```
+ключевые слова : `SELECT, FROM, WHERE`
+
+- `SELECT id, name ` (id, name - столбцы)
+- `FROM users` (users - тблица)
+- `WHERE name='Игорь'` ( name='Игорь' - скалярное выражение)
+
+Скалярные выражения - числа и строки. фактически это константы
+```
+mysql> SELECT 'Hello db!'
+```
+'Hello db!' - скалярное выражение
+```
 #   mysql> SELECT 'Hello db!'s'
-# когда ковычки внутри ковычек интерпритатор запутается
-# надо экранировать символ ковычек при помощи слэша
-#   mysql> SELECT 'Hello db\'s'
-# также можем воспользовться двойными ковычками
-#   mysql> SELECT "Hello db's"
+```
+когда ковычки внутри ковычек интерпритатор запутается надо экранировать символ ковычек при помощи слэша
+```
+mysql> SELECT 'Hello db\'s'
+```
+также можем воспользовться двойными ковычками
+```
+mysql> SELECT "Hello db's"
+```
 
-# имена БД , таблиц, столбцов строк
-# могут содержать разные символы кроме |\./
-# если имя совпадает с ключевым словом
-# его заключают в обратные ковычки `
-#   mysql> CREATE TABLE tbl (create INT)
-# имя команды CREATE совпадает с именем столбца create
-# мы получим ошибку.
-#   mysql> CREATE TABLE tbl (`create` INT)
+Имена БД , таблиц, столбцов строк могут содержать разные символы кроме `|\./` если имя совпадает с ключевым словом его заключают в обратные ковычки `
+```
+mysql> CREATE TABLE tbl (create INT)
+```
+имя команды CREATE совпадает с именем столбца create мы получим ошибку.
+```
+mysql> CREATE TABLE tbl (`create` INT)
+```
 
-# ТИПЫ ДАННЫХ:
-# - типы данных
-# - целые числа
-# - вещественные числа
-# - строки
+ТИПЫ ДАННЫХ:
+- типы данных
+- целые числа
+- вещественные числа
+- строки
 
-# в таблице в каждом столбце данные одного типа
-# Типы данных MySQL
-# - числовые (целые, вещественные с плавающей точкой)
-# - строковые (фиксированные, переменного типа)
-# - NULL (неопределённое значение, отсутствие информации)
-# - календарные (сохраниение даты и времени)
-# - коллекции (множество значение , json документ)
+В таблице в каждом столбце данные одного типа
 
-# Атрибуты
-# - NULL или NOT NULL
-# (задаёт ограничение на столбец,
-# позволяя присваивать элементам
-# неопределённые значения)
-# - DEFAULT
-# (задать полю значени епо умолчанию)
-# - UNSIGNED
-# (только для числовых значений
-# запрещает хронить отрицательные значения)
+### Типы данных MySQL:
+- числовые (целые, вещественные с плавающей точкой)
+- строковые (фиксированные, переменного типа)
+- NULL (неопределённое значение, отсутствие информации)
+- календарные (сохраниение даты и времени)
+- коллекции (множество значение , json документ)
 
-# INT (-2 147 683 648  до 2 147 683 647)
-# INT (-2^31  до 2^31)
-# INT UNSIGNED (0 - 4 294 967 295 )  (0 - 2^32)
+### Атрибуты
+- `NULL или NOT NULL` (задаёт ограничение на столбец, позволяя присваивать элементам неопределённые значения)
+- `DEFAULT` (задать полю значени епо умолчанию)
+- `UNSIGNED` (только для числовых значений запрещает хронить отрицательные значения)
 
-# Числовые типы
-# числовые:
-# - целочисленные
-#   TINYINT (1 байт = 8 бит) (0 - 2^8) (0-256) (-128 до 127)
-#   SMALLINT
-#   MEDIUMINT
-#   INT
-#   BIGINT
-# - вещественные (с плавающий точкой)
+- `INT` (-2 147 683 648  до 2 147 683 647)
+- `INT` (-2^31  до 2^31)
+- `INT UNSIGNED` (0 - 4 294 967 295 )  (0 - 2^32)
+
+### Числовые типы
+
+числовые:
+1) целочисленные
+```
+TINYINT (1 байт = 8 бит) (0 - 2^8) (0-256) (-128 до 127)
+SMALLINT
+MEDIUMINT
+INT
+BIGINT
+```
+2) вещественные (с плавающий точкой)
+```
 #   FLOAT
 #   DOUBLE
-# - точные
-#   DECIMAL
+```
+3) точные
+```
+DECIMAL
+```
 
-#   mysql> CREATE TABLE tbl (id INT(8));
-# создаём таблицу tbl со столбцом id
-# тип данных INT и поле размером 8 символов (8)
+```
+mysql> CREATE TABLE tbl (id INT(8));
+```
+Cоздаём таблицу `tbl` со столбцом `id` тип данных `INT`  и поле размером `8` символов (8)
 
-# поместим в таблицу число 5
-#   mysql> INSERT INTO tbl VALUES (5);
-# выведим содержимое таблицы
-#   mysql> SELECT * FROM tbl;
-#   -->
-# +------+
-# | id   |
-# +------+
-# |    1 |
-# +------+
-
-#   mysql> DROP TABLE IF EXISTS tbl;
-# удаляем таблицу tbl
-
-#   mysql> CREATE TABLE tbl (id INT(3) ZEROFILL);
-# Создадим таблицу, где столбец id
-# будет содержать числовое значение INT
-# столбец будет занимать 3 символа INT(3)
-# ZEROFILL вместо пробелов отображать нули
-#   mysql> INSERT INTO tbl VALUES (1);
-# поместим в таблицу значение 1
-#   mysql> SELECT * FROM tbl;
-#   -->
+поместим в таблицу число 5
+```
+mysql> INSERT INTO tbl VALUES (5);
+```
+выведим содержимое таблицы
+```
+mysql> SELECT * FROM tbl;
+```
+-->
+```
++------+
+| id   |
++------+
+|    1 |
++------+
+```
+```
+mysql> DROP TABLE IF EXISTS tbl;
+```
+Удаляем таблицу tbl
+```
+mysql> CREATE TABLE tbl (id INT(3) ZEROFILL);
+```
+Создадим таблицу, где столбец id будет содержать числовое значение INT, столбец будет занимать 3 символа INT(3), ZEROFILL вместо пробелов отображать нули
+```
+mysql> INSERT INTO tbl VALUES (1);
+```
+поместим в таблицу значение 1
+```
+mysql> SELECT * FROM tbl;
+```
+-->
+```
 # +------+
 # | id   |
 # +------+
 # |  001 |
 # +------+
+```
 
-# МОЖЕМ УКАЗЫВАТЬ КОЛИЧЕСТВО СИМВОЛОВ ПОСЛЕ INT
-#   mysql> INSERT INTO tbl VALUES (1000);
-#   mysql> SELECT * FROM tbl;
-#   -->
-# +------+
-# | id   |
-# +------+
-# |  001 |
-# |  200 |
-# +------+
+МОЖЕМ УКАЗЫВАТЬ КОЛИЧЕСТВО СИМВОЛОВ ПОСЛЕ INT
+```
+mysql> INSERT INTO tbl VALUES (1000);
+mysql> SELECT * FROM tbl;
+```
+-->
+```
++------+
+| id   |
++------+
+|  001 |
+|  200 |
++------+
+```
 
-# FLOAT - 4 байта
-# DOUBLE - 8 байт
-# DECIMAL(7,4) 111.2000 - под всё число отводится 7 байт
-# под дробную часть 4 байта
-# число хранится в  виде строки
-# максимально возможное 999.9999
+- FLOAT - 4 байта
+- DOUBLE - 8 байт
+- DECIMAL(7,4) 111.2000 - под всё число отводится 7 байт под дробную часть 4 байта число хранится в  виде строки максимально возможное 999.9999
+```
+mysql> CREATE TABLE tbldec (price DECIMAL(7,4));
+mysql> INSERT INTO tbldec VALUES (111.2);
+mysql> SELECT * FROM tbldec;
+```
+попытаемся ввести число которое не подходит под условия
+```
+mysql> INSERT INTO tbldec VALUES (11111)
+```
+сообщение об ошибке
 
-#   mysql> CREATE TABLE tbldec (price DECIMAL(7,4));
-#   mysql> INSERT INTO tbldec VALUES (111.2);
-#   mysql> SELECT * FROM tbldec;
-# попытаемся ввести число которое не подходит под условия
-#   mysql> INSERT INTO tbldec VALUES (11111)
-# сообщение об ошибке
+### СТРОКОВЫЕ ТИПЫ
+строковые:
+- фиксированные (имеется фиксированный размер)
+```
+CHAR
+```
+- переменные (нет фикс. размера)
+```
+VARCHAR
+```
+- BLOB (для хронения бинарных больших объёмов)
+```
+TINYTEXT
+TEXT
+MEDIUMTEXT
+LONGTEXT
+```
+В круглых скобках после типа можно задать максимальный размер строки
 
-# СТРОКОВЫЕ ТИПЫ
-# строковые:
-# - фиксированные (имеется фиксированный размер)
-#   CHAR
-# - переменные (нет фикс. размера)
-#   VARCHAR
-# - BLOB (для хронения бинарных больших объёмов)
-#   TINYTEXT
-#   TEXT
-#   MEDIUMTEXT
-#   LONGTEXT
+Создадим таблицу со строковыми данными. Воспользуемся графическим редактором DBeaver
+```
+ВП -> Редактор SQL -> открылся блокнот
+>>> DROP TABLE IF EXISTS tbl;
+    CREATE TABLE tbl (
+    name CHAR(10) DEFAULT 'anonimus',
+    description VARCHAR(255)
+  );
+```
+`name CHAR(10) DEFAULT 'anonimus'` создали столбец - `name`, тип данных фиксированный `CHAR`, `(10)` - фиксированный размер 10 байт `DEFAULT 'anonimus'` - если имя не задано,то по умалчанию имя будет 'anonimus' создали столбец `description`, `VARCHAR(255)` - переменного размера, `(255)` байт будет дано на это столбец
 
-# в круглых скобках после типа
-# можно задать максимальный размер строки
+вставим новую строку
+```
+>>> INSERT INTO tbl VALUES (DEFAULT, 'Новый пользователь');
+>>> INSERT INTO tbl VALUES ('Юрген', 'Новый пользователь');
+>>> SELECT * FROM tbl;
+```
+Если имя будет больше чем 10 символов - ошибка выпадет, `ALT + X` запустить скрипт в DBeaver
 
-# создадим таблицу со строковыми данными
-# Воспользуемся графическим редактором DBeaver
-# ВП -> Редактор SQL -> открылся блокнот
-#   >>> DROP TABLE IF EXISTS tbl;
-#       CREATE TABLE tbl (
-#       name CHAR(10) DEFAULT 'anonimus',
-#       description VARCHAR(255)
-#   );
+Столкнулся со следующими трудностями и ошибками. В DBeaver надо ВП -> текущее соединение выставляю `MySQL Host`, ВП -> текущий каталог\схема - выбираю `crypto` базу данных в командах
+```
+>>> INSERT INTO tbl VALUES (DEFAULT, 'Новый пользователь');
+```
+Русские символы не читаются и БД ругается в дебивере, надо менять кодировку или использовать латиницу
 
-# name CHAR(10) DEFAULT 'anonimus'
-# создали столбец - name
-# тип данных фиксированный CHAR
-# (10) - фиксированный размер 10 байт
-# DEFAULT 'anonimus' - если имя не задано,
-# то по умалчанию имя будет 'anonimus'
-# создали столбец description
-# VARCHAR(255) - переменного размера
-# (255) байт будет дано на это столбец
+Итого рабочий скрипт:
+ ```
+DROP TABLE IF EXISTS tbl;
+CREATE TABLE tbl (
+ 	name CHAR(10) DEFAULT 'anonimus',
+ 	description VARCHAR(255)
+);
+INSERT INTO tbl VALUES (DEFAULT, 'New User');
+INSERT INTO tbl VALUES ('Yurgen', 'User');
+SELECT * FROM tbl;
+```
+Запись переменной длины под неё отводится 65536 байт (2^16)
 
-# вставим новую строку
-#   >>> INSERT INTO tbl VALUES (DEFAULT, 'Новый пользователь');
-#   >>> INSERT INTO tbl VALUES ('Юрген', 'Новый пользователь');
-#   >>> SELECT * FROM tbl;
-# Если имя будет больше чем 10 символов - ошибка выпадет
-# ALT + X запустить скрипт в DBeaver
-
-# Столкнулся со следующими трудностями и ошибками
-# В DBeaver надо ВП -> текущее соединение
-# выставляю MySQL Host
-# ВП -> текущий каталог\схема
-# выбираю crypto базу данных
-# в командах
-# >>> INSERT INTO tbl VALUES (DEFAULT, 'Новый пользователь');
-# русские символы не читаются и БД ругается в дебивере.
-# надо менять кодировку или использовать латиницу
-
-# Итого рабочий скрипт:
-# DROP TABLE IF EXISTS tbl;
-# CREATE TABLE tbl (
-# 	name CHAR(10) DEFAULT 'anonimus',
-# 	description VARCHAR(255)
-# );
-# INSERT INTO tbl VALUES (DEFAULT, 'New User');
-# INSERT INTO tbl VALUES ('Yurgen', 'User');
-# SELECT * FROM tbl;
-
-# Запись переменной длины
-# под неё отводится 65536 байт (2^16)
-
-# Для хранения объёмного текста
-# используется тип TEXT
-# TINYTEXT 2^8 байт
-# TEXT 2^16
-# MEDIUMTEXT 2^24
-# LONGTEXT 2^32
+Для хранения объёмного текста используется тип `TEXT`
+```
+TINYTEXT 2^8 байт
+TEXT 2^16
+MEDIUMTEXT 2^24
+LONGTEXT 2^32
+```
 
 # СОЗДАДИМ УЧЕБНУЮ БД
-# Мы создаём интернет магазин в БД crypto
-# создадим файл shop.sql
-# куда будем записывать наши наработки
-# ВП -> открыть скрипт SQL -> новый скрипт
-# ПКМ -> переиминовать в shop.sql
-# первым делом создадим таблицу catalog
-#   mysql> DROP TABLE IF EXISTS catalogs;
-# удаляем таблицу если она существует
-#   mysql> CREATE TABLE catalogs (
-#       id INT UNSIGNED,
-#       name VARCHAR(255) COMMENT 'название раздела'
-#   ) COMMENT = 'Разделы интернет магазина';
-# id INT UNSIGNED, - создадим первичный ключ
-# UNSIGNED т.к отрицательные значения нам не нужны
-# name имя для каталога . тип данных VARCHAR(255)
-# таблицы и столбцы можно снабжать комментариями
 
-# По аналогии составляем БД для пользователей
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#     id INT UNSIGNED,
-#     name VARCHAR(255) COMMENT 'name buyer'
-# ) COMMENT = 'buyers';
+Мы создаём интернет магазин в БД crypto
 
-# Создадим таблицу для товара
-# DROP TABLE IF EXISTS products;
-# CREATE TABLE products (
-#    id INT UNSIGNED,
-#    name VARCHAR(255) COMMENT 'название',
-#    discription TEXT COMMENT 'описание',
-#    price DECIMAL (11,2) COMMENT 'цена',
-#    catalog_id INT UNSIGNED
-# ) COMMENT = 'Товарные позиции';
+1) создадим файл `shop.sql` куда будем записывать наши наработки.
+- ВП -> открыть скрипт SQL -> новый скрипт
+- ПКМ -> переиминовать в shop.sql
+  
+2) первым делом создадим таблицу `catalog`
+```
+mysql> DROP TABLE IF EXISTS catalogs;
+```
+удаляем таблицу если она существует
+```
+mysql> CREATE TABLE catalogs (
+      id INT UNSIGNED,
+      name VARCHAR(255) COMMENT 'название раздела'
+  ) COMMENT = 'Разделы интернет магазина';
+```
 
-# Нам потребуются заказы пользователей
-# первичный ключ ай ди и юзер ай ди
-# DROP TABLE IF EXISTS orders;
-# CREATE TABLE orders (
-#    id INT UNSIGNED,
-#    user_id INT UNSIGNED
-# ) COMMENT = 'orders';
+- `id INT UNSIGNED,` - создадим первичный ключ
+- `UNSIGNED` т.к отрицательные значения нам не нужны
+- `name` имя для каталога . тип данных VARCHAR(255)
+- таблицы и столбцы можно снабжать комментариями
 
-# Введём промежуточную таблицу
-# DROP TABLE IF EXISTS orders_products;
-# CREATE TABLE orders_products (
-#    id INT UNSIGNED,
-#    order_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    total INT UNSIGNED DEFAULT 1 COMMENT 'all orders'
-# ) COMMENT = 'value orders';
-
-# таблица для скидок
-# DROP TABLE IF EXISTS discounts;
-# CREATE TABLE discounts (
-#    id INT UNSIGNED,
-#    user_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0'
-# ) COMMENT = 'discounts';
-
+По аналогии составляем БД для пользователей
+```
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INT UNSIGNED,
+    name VARCHAR(255) COMMENT 'name buyer'
+) COMMENT = 'buyers';
+```
+Создадим таблицу для товара
+```
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
+   id INT UNSIGNED,
+   name VARCHAR(255) COMMENT 'название',
+   discription TEXT COMMENT 'описание',
+   price DECIMAL (11,2) COMMENT 'цена',
+   catalog_id INT UNSIGNED
+) COMMENT = 'Товарные позиции';
+```
+Нам потребуются заказы пользователей, первичный ключ ай ди и юзер ай ди
+```
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+   id INT UNSIGNED,
+   user_id INT UNSIGNED
+) COMMENT = 'orders';
+```
+Введём промежуточную таблицу
+```
+DROP TABLE IF EXISTS orders_products;
+CREATE TABLE orders_products (
+   id INT UNSIGNED,
+   order_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   total INT UNSIGNED DEFAULT 1 COMMENT 'all orders'
+) COMMENT = 'value orders';
+```
+таблица для скидок
+```
+DROP TABLE IF EXISTS discounts;
+CREATE TABLE discounts (
+   id INT UNSIGNED,
+   user_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0'
+) COMMENT = 'discounts';
+```
 # Введём таблицу склада и свяжем её с товаром
-# DROP TABLE IF EXISTS storehouses;
-# CREATE TABLE storehouses (
-#    id INT UNSIGNED,
-#    name VARCHAR(255) COMMENT 'name'
-# ) COMMENT = 'storehouses';
+```
+DROP TABLE IF EXISTS storehouses;
+CREATE TABLE storehouses (
+   id INT UNSIGNED,
+   name VARCHAR(255) COMMENT 'name'
+) COMMENT = 'storehouses';
+```
+```
+DROP TABLE IF EXISTS storehouses_products;
+CREATE TABLE storehouses_products (
+   id INT UNSIGNED,
+   storehouse_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   value INT UNSIGNED COMMENT 'value products'
+) COMMENT = 'value products on storehouses';
+```
+Это всё каркас нашей учебной БД, скрипт выглядит целиком так:
+```
+DROP TABLE IF EXISTS catalogs;
+CREATE TABLE catalogs (
+    id INT UNSIGNED NOT NULL,
+    name VARCHAR(255) COMMENT 'name BD categories'
+) COMMENT = 'categories internet shop';
 
-# DROP TABLE IF EXISTS storehouses_products;
-# CREATE TABLE storehouses_products (
-#    id INT UNSIGNED,
-#    storehouse_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    value INT UNSIGNED COMMENT 'value products'
-# ) COMMENT = 'value products on storehouses';
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name buyer'
+) COMMENT = 'buyers';
 
-# Это всё каркас нашей учебной БД
-# скрипт выглядит целиком так:
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name',
+   discription TEXT COMMENT 'discription',
+   price DECIMAL (11,2) COMMENT 'price' ,
+   catalog_id INT UNSIGNED
+) COMMENT = 'Positions';LL
 
-# DROP TABLE IF EXISTS catalogs;
-# CREATE TABLE catalogs (
-#     id INT UNSIGNED NOT NULL,
-#     name VARCHAR(255) COMMENT 'name BD categories'
-# ) COMMENT = 'categories internet shop';
-#
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name buyer'
-# ) COMMENT = 'buyers';
-#
-# DROP TABLE IF EXISTS products;
-# CREATE TABLE products (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name',
-#    discription TEXT COMMENT 'discription',
-#    price DECIMAL (11,2) COMMENT 'price' ,
-#    catalog_id INT UNSIGNED
-# ) COMMENT = 'Positions';LL
-#
-# DROP TABLE IF EXISTS orders;
-# CREATE TABLE orders (
-#    id INT UNSIGNED NOT NULL,
-#    user_id INT UNSIGNED
-# ) COMMENT = 'orders';
-#
-# DROP TABLE IF EXISTS orders_products;
-# CREATE TABLE orders_products (
-#    id INT UNSIGNED NOT NULL,
-#    order_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    total INT UNSIGNED DEFAULT 1 COMMENT 'all orders'
-# ) COMMENT = 'value orders';
-#
-# DROP TABLE IF EXISTS discounts;
-# CREATE TABLE discounts (
-#    id INT UNSIGNED NOT NULL,
-#    user_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0'
-# ) COMMENT = 'discounts';
-#
-# DROP TABLE IF EXISTS storehouses;
-# CREATE TABLE storehouses (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name'
-# ) COMMENT = 'storehouses';
-#
-# DROP TABLE IF EXISTS storehouses_products;
-# CREATE TABLE storehouses_products (
-#    id INT UNSIGNED NOT NULL,
-#    storehouse_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    value INT UNSIGNED COMMENT 'value products'
-# ) COMMENT = 'value products on storehouses';
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+   id INT UNSIGNED NOT NULL,
+   user_id INT UNSIGNED
+) COMMENT = 'orders';
 
-# КАЛЕНДАРНЫЕ ТИПЫ ДАННЫХ И МНОЖЕСТВА
-# - значение NULL
-# - календарные типы
-# - ENUM
-# - SET
-# - JSON тип
-# - изменение структуры таблицы при помощи ALTER TABLE
+DROP TABLE IF EXISTS orders_products;
+CREATE TABLE orders_products (
+    id INT UNSIGNED NOT NULL,
+    order_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   total INT UNSIGNED DEFAULT 1 COMMENT 'all orders'
+) COMMENT = 'value orders';
 
-#  mysql> SELECT NULL;
-#  --> NULL
-# все операции с NULL возвращают NULL
-#  mysql> SELECT NULL + 2
-#  --> NULL
+DROP TABLE IF EXISTS discounts;
+CREATE TABLE discounts (
+   id INT UNSIGNED NOT NULL,
+   user_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0'
+) COMMENT = 'discounts';
 
-#  mysql> CREATE TABLE tbl (id INT UNSIGNED);
-#  mysql> INSERT INTO tbl VALUES();
-# вставляем новую строку,
-# но не  будем задавать ни одного значения
+DROP TABLE IF EXISTS storehouses;
+CREATE TABLE storehouses (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name'
+) COMMENT = 'storehouses';
+
+DROP TABLE IF EXISTS storehouses_products;
+CREATE TABLE storehouses_products (
+   id INT UNSIGNED NOT NULL,
+   storehouse_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   value INT UNSIGNED COMMENT 'value products'
+) COMMENT = 'value products on storehouses';
+```
+### КАЛЕНДАРНЫЕ ТИПЫ ДАННЫХ И МНОЖЕСТВА
+- значение NULL
+- календарные типы
+- ENUM
+- SET
+- JSON тип
+- изменение структуры таблицы при помощи ALTER TABLE
+```
+ mysql> SELECT NULL;
+```
+--> NULL , Все операции с NULL возвращают NULL
+```
+mysql> SELECT NULL + 2
+```
+--> NULL
+```
+mysql> CREATE TABLE tbl (id INT UNSIGNED);
+mysql> INSERT INTO tbl VALUES();
+```
+вставляем новую строку, но не  будем задавать ни одного значения
 
 # ПРЕОБРАЗУЕМ С ПОМОЩЬЮ ALTER TABLE
 #   mysql> ALTER TABLE tbl CHANGE id id INT UNSIGNED NOT NULL;
