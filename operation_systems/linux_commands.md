@@ -16,3 +16,4 @@
 - `apt list --upgradeable` Вывод списка обновлений (установленных и доступных)
 - `apt list --all-versions` все пакеты, доступные для вашей операционной системы
 - `sudo apt autoremove` для очистки системы
+- `systemctl status mysql.service` статус работы сервера mysql
