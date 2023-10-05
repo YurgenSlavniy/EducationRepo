@@ -1037,7 +1037,7 @@ CREATE TABLE discounts (
    discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0'
 ) COMMENT = 'discounts';
 ```
-# Введём таблицу склада и свяжем её с товаром
+Введём таблицу склада и свяжем её с товаром
 ```
 DROP TABLE IF EXISTS storehouses;
 CREATE TABLE storehouses (
@@ -1134,505 +1134,491 @@ mysql> INSERT INTO tbl VALUES();
 ```
 вставляем новую строку, но не  будем задавать ни одного значения
 
-# ПРЕОБРАЗУЕМ С ПОМОЩЬЮ ALTER TABLE
-#   mysql> ALTER TABLE tbl CHANGE id id INT UNSIGNED NOT NULL;
-# ALTER TABLE - ключевое слово (команда)
-# tbl - назвние таблицы
-# CHANGE - ключевое слово (изменить)
-# id - столбец который изменяем
-# id INT UNSIGNED NOT NULL - указываем новые значения столбца
+### ПРЕОБРАЗУЕМ С ПОМОЩЬЮ ALTER TABLE
+```
+mysql> ALTER TABLE tbl CHANGE id id INT UNSIGNED NOT NULL;
+```
+- `ALTER TABLE` - ключевое слово (команда)
+- `tbl` - назвние таблицы
+- `CHANGE` - ключевое слово (изменить)
+- `id` - столбец который изменяем
+- `id INT UNSIGNED NOT NULL` - указываем новые значения столбца
+```
+mysql> TRUNCATE tbl;
+```
+Очистить таблицу
+```
+mysql> DESCRIBE tbl\G
+```
+Посмотреть структуру таблицы
 
-#   mysql> TRUNCATE tbl;
-# Очистить таблицу
-#   mysql> DESCRIBE tbl\G
-# Посмотреть структуру таблицы
+### КАЛЕНДАРНЫЕ ТИПЫ
+- `TIME` (хранение времени в течении суток)
+- `YEAR` (хронит год)
+- `DATE` (хронит дату с точностью до дня)
+- `DATETIME` (хронит дату и время)
+- `TIMESTAMP` (хронит дату и время занимает меньше места
+  
+Хронит даты от 1970 до 2038 года. первый столбец этой таблицы обнавляется автоматически при операции создания и обнавления)
 
-# КАЛЕНДАРНЫЕ ТИПЫ
-# - TIME (хранение времени в течении суток)
-# - YEAR (хронит год)
-# - DATE (хронит дату с точностью до дня)
-# - DATETIME (хронит дату и время)
-# - TIMESTAMP (хронит дату и время занимает меньше места
-# хронит даты от 1970 до 2038 года. первый столбец
-# этой таблицы обнавляется автоматически
-# при операции создания и обнавления)
+### Формат календарных типов
+- `YEAR` 0000
+- `DATE` '0000-00-00'
+- `TIME` '00:00:00'
+- `TIMESTAMP` '0000-00-00 00:00:00'
+- `DATETIME` '0000-00-00 00:00:00'
 
-# Формат календарных типов
-# YEAR 0000
-# DATE '0000-00-00'
-# TIME '00:00:00'
-# TIMESTAMP '0000-00-00 00:00:00'
-# DATETIME '0000-00-00 00:00:00'
+```
+mysql> SELECT '2021-09-09 00:00:00'
+mysql> SELECT '2021-09-09 00:00:00' - INTERVAL 1 DAY
+```
 
-#   mysql> SELECT '2021-09-09 00:00:00'
-#   mysql> SELECT '2021-09-09 00:00:00' - INTERVAL 1 DAY
-# можем вычитать, складывать
-#   mysql> SELECT '2021-09-09 00:00:00' + INTERVAL 1 WEEK
-#   mysql> SELECT '2021-09-09 00:00:00' + INTERVAL '1-1' YEAR_MONTH
-# интервалы могут быть комбинированными
+Можем вычитать, складывать
+```
+mysql> SELECT '2021-09-09 00:00:00' + INTERVAL 1 WEEK
+mysql> SELECT '2021-09-09 00:00:00' + INTERVAL '1-1' YEAR_MONTH
+```
+Интервалы могут быть комбинированными
 
-# ENUM и SET
-# их допустимые значения задаются списком строк
-# Внутри БД элементы множеств хронятся в виде чисел
-# ENUM - поле может получить всего одно значение из списка
-# SET - может применять комбинацию заданных значений
+### ENUM и SET
+Их допустимые значения задаются списком строк внутри БД, элементы множеств хронятся в виде чисел
+- `ENUM` - поле может получить всего одно значение из списка
+- `SET` - может применять комбинацию заданных значений
 
-# JSON формат столбца
-# добавим столбец при помощи ALTER TABLE
-#   mysql> ALTER TABLE tbl ADD collect JSON;
-# посмотрим структуру таблицы
-#   mysql> DESCRIBE tbl;
-# вставим новую запись из JSON объекта
-#   mysql> INSERT INTO tbl VALUES (1, '{"first": "Hello", "second": "World"}');
-# в столбце id добавится 1.
-# в столбец collect '{"first": "Hello", "second": "World"}'
-# обращаться к полям JSON извлекая значение ключей
-#   mysql> SELECT collect->>"$.first" FROM tbl;
+### JSON формат столбца
+Добавим столбец при помощи ALTER TABLE
+```
+mysql> ALTER TABLE tbl ADD collect JSON;
+```
+посмотрим структуру таблицы
+```
+mysql> DESCRIBE tbl;
+```
+вставим новую запись из JSON объекта
+```
+mysql> INSERT INTO tbl VALUES (1, '{"first": "Hello", "second": "World"}');
+```
+в столбце id добавится 1., в столбец collect '{"first": "Hello", "second": "World"}' обращаться к полям JSON извлекая значение ключей
+```
+mysql> SELECT collect->>"$.first" FROM tbl;
+```
+Поправим БД нашего магазина, используя вышеизложенное: первичные ключи снабдим атрибутом `NOT NULL`, добавим в таблицу пользователей столбец день рожденья
+```
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name buyer',
+   birthday_at DATE COMMENT 'user birhtday'
+-> created_at DATETIME COMMENT 'date of registration'
+) COMMENT = 'buyers';
+```
+Добавим дату и время создания записи время регистрации.
+```
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name buyer',
+   birthday_at DATE COMMENT 'user birhtday'
+-> created_at DATETIME COMMENT 'date of registration'
+) COMMENT = 'buyers';
+```
+Добавим дату и время последгнего обновления записи пользователя чтобы автоматически дата обнавлялась `DEFAULT CURRENT_TIMESTAMP` если этим полям не присваивать значение, автоматически присвоится текущее значение даты и времени
+```
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name buyer',
+   birthday_at DATE COMMENT 'user birhtday',
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'date of registration',
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ON UPDATE CURRENT_TIMESTAMP 'date of update'
+) COMMENT = 'buyers';
+```
+Чтобы поле `updated_at` обнавлялось автоматически при операции вставки и обнавлении записи `ON UPDATE CURRENT_TIMESTAMP`
+```
+updated_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ON UPDATE CURRENT_TIMESTAMP 'date of updqte'
+```
+Добавим в таблицу данные
+```
+>>> INSERT INTO users (id, name, birthday_at) VALUES (1, 'hello', '1979-01-27');
+>>> SELECT * FROM users;
+```
+Внесём аналогичные изменения в таблицу products, orders, orders_product. В таблицу discounts добавим 4 календарных поля
+- started_ad - начало действия скидки
+- finish_ad - конец действия скидки
+- добавляем в 2 оставшиеся таблицы
+- created_at и updated_at
 
-# Поправим БД нашего магазина,
-# используя вышеизложенное
-# первичные ключи снабдим атрибутом NOT NULL
-# добавим в таблицу пользователей
-# столбец день рожденья
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name buyer',
-#    birthday_at DATE COMMENT 'user birhtday'
-# -> created_at DATETIME COMMENT 'date of registration'
-# ) COMMENT = 'buyers';
+Итоговый скрипт:
+```
+DROP TABLE IF EXISTS catalogs;
+CREATE TABLE catalogs (
+    id INT UNSIGNED NOT NULL,
+    name VARCHAR(255) COMMENT 'name BD categories'
+) COMMENT = 'categories internet shop';
 
-# Добавим дату и время создания записи
-# (время регистрации)
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name buyer',
-#    birthday_at DATE COMMENT 'user birhtday'
-# -> created_at DATETIME COMMENT 'date of registration'
-# ) COMMENT = 'buyers';
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name buyer',
+   birthday_at DATE COMMENT 'user birhtday',
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'date of registration',
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'buyers';
 
-# добавим дату и время последгнего
-# обновления записи пользователя
-# чтобы автоматически дата обнавлялась
-# DEFAULT CURRENT_TIMESTAMP
-# если этим полям не присваивать значение,
-# автоматически присвоится текущее значение
-# даты и времени
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name',
+   discription TEXT COMMENT 'discription',
+   price DECIMAL (11,2) COMMENT 'price' ,
+   catalog_id INT unsigned,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'Positions';
 
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name buyer',
-#    birthday_at DATE COMMENT 'user birhtday',
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'date of registration',
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ON UPDATE CURRENT_TIMESTAMP 'date of update'
-# ) COMMENT = 'buyers';
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+   id INT UNSIGNED NOT NULL,
+   user_id INT UNSIGNED,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'orders';
 
-# чтобы поле updated_at обнавлялось автоматически
-# при операции вставки и обнавлении записи
-# ON UPDATE CURRENT_TIMESTAMP
+DROP TABLE IF EXISTS orders_products;
+CREATE TABLE orders_products (
+   id INT UNSIGNED NOT NULL,
+   order_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   total INT UNSIGNED DEFAULT 1 COMMENT 'all orders',
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'value orders';
 
-#  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ON UPDATE CURRENT_TIMESTAMP 'date of updqte'
+DROP TABLE IF EXISTS discounts;
+CREATE TABLE discounts (
+   id INT UNSIGNED NOT NULL,
+   user_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0',
+   started_at DATETIME,
+   finished_at DATETIME,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'discounts';
 
-# Добавим в таблицу данные
-#  >>> INSERT INTO users (id, name, birthday_at) VALUES (1, 'hello', '1979-01-27');
-#  >>> SELECT * FROM users;
+DROP TABLE IF EXISTS storehouses;
+CREATE TABLE storehouses (
+   id INT UNSIGNED NOT NULL,
+   name VARCHAR(255) COMMENT 'name',
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'storehouses';
 
-# внесём аналогичные изменения в таблицу
-# products, orders, orders_product
-# В таблицу discounts добавим 4 календарных поля
-# started_ad - начало действия скидки
-# finish_ad - конец действия скидки
-# добавляем в 2 оставшиеся таблицы
-# created_at и updated_at
-
-# Итоговый скрипт:
-
-# DROP TABLE IF EXISTS catalogs;
-# CREATE TABLE catalogs (
-#     id INT UNSIGNED NOT NULL,
-#     name VARCHAR(255) COMMENT 'name BD categories'
-# ) COMMENT = 'categories internet shop';
-#
-# DROP TABLE IF EXISTS users;
-# CREATE TABLE users (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name buyer',
-#    birthday_at DATE COMMENT 'user birhtday',
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'date of registration',
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'buyers';
-#
-# DROP TABLE IF EXISTS products;
-# CREATE TABLE products (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name',
-#    discription TEXT COMMENT 'discription',
-#    price DECIMAL (11,2) COMMENT 'price' ,
-#    catalog_id INT unsigned,
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'Positions';
-#
-# DROP TABLE IF EXISTS orders;
-# CREATE TABLE orders (
-#    id INT UNSIGNED NOT NULL,
-#    user_id INT UNSIGNED,
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'orders';
-#
-# DROP TABLE IF EXISTS orders_products;
-# CREATE TABLE orders_products (
-#    id INT UNSIGNED NOT NULL,
-#    order_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    total INT UNSIGNED DEFAULT 1 COMMENT 'all orders',
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'value orders';
-#
-# DROP TABLE IF EXISTS discounts;
-# CREATE TABLE discounts (
-#    id INT UNSIGNED NOT NULL,
-#    user_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    discount FLOAT UNSIGNED COMMENT 'discount 0.0 - 1.0',
-#    started_at DATETIME,
-#    finished_at DATETIME,
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'discounts';
-#
-# DROP TABLE IF EXISTS storehouses;
-# CREATE TABLE storehouses (
-#    id INT UNSIGNED NOT NULL,
-#    name VARCHAR(255) COMMENT 'name',
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'storehouses';
-#
-# DROP TABLE IF EXISTS storehouses_products;
-# CREATE TABLE storehouses_products (
-#    id INT UNSIGNED NOT NULL PRIMARY KEY,
-#    storehouse_id INT UNSIGNED,
-#    product_id INT UNSIGNED,
-#    value INT UNSIGNED COMMENT 'value products',
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-# ) COMMENT = 'value products on storehouses';
-
+DROP TABLE IF EXISTS storehouses_products;
+CREATE TABLE storehouses_products (
+   id INT UNSIGNED NOT NULL PRIMARY KEY,
+   storehouse_id INT UNSIGNED,
+   product_id INT UNSIGNED,
+   value INT UNSIGNED COMMENT 'value products',
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) COMMENT = 'value products on storehouses';
+```
 # ИНДЕКСЫ
-# - индексы
-# - устройство индекса
-# - типы индексов
-# - атрибут AUTO_INCREMENT
-# - управление индексами
+- индексы
+- устройство индекса
+- типы индексов
+- атрибут AUTO_INCREMENT
+- управление индексами
 
-# ключи - столбцы при помощи которых
-# мы добиваемся уникальности записей
-# и связываем записи в разных таблицах
-# ключи могут снабжаться ИНДЕКСАМИ
-# ИНДЕКСИРОВАТЬ можно любой столбец
+Ключи - столбцы при помощи которых мы добиваемся уникальности записей и связываем записи в разных таблицах ключи могут снабжаться ИНДЕКСАМИ. ИНДЕКСИРОВАТЬ можно любой столбец
 
-# идея индексов - создать копию стлбца
-# которая постоянно будет поддерживаться
-# в отсортированном состоянии
+Идея индексов - создать копию стлбца которая постоянно будет поддерживаться в отсортированном состоянии
 
-# Индексы
-# - обычные
-# - уникальные (первичный ключ)
-# - полнотекстовый
+Индексы:
+- обычные
+- уникальные (первичный ключ)
+- полнотекстовый
 
-# В таблице может быть только один первичный ключ
-# первичный ключ таблицы помечается
-# специальным ключевым словом
-# значение должно быть уникальным
-# и не повторяться в пределах таблицы
-# столбцы помеченные pramiery key
-# не могут принимать значение NULL
+В таблице может быть только один первичный ключ, первичный ключ таблицы помечается специальным ключевым словом значение должно быть уникальным и не повторяться в пределах таблицы столбцы помеченные `pramiery key` не могут принимать значение `NULL`
+```
+DROP TABLE IF EXISTS catalogs;
+CREATE TABLE catalogs (
+    id INT UNSIGNED NOT NULL PRIMARY KEY,
+    name VARCHAR(255) COMMENT 'name BD categories'
+) COMMENT = 'categories internet shop';
+```
+Посмотрим в консоле на описание таблицы
+```
+mysql> DESCRIBE catalogs;
+```
+Альтернативный способ объявления первичного ключа. выбрали БД.
+```
+mysql> PRIMARY KEY(id)
+```
+В скбках название столбца к которому применяем `(id)` ключвое слово `PRIMARY KEY` может встречаться в таблице только 1 раз т.к в таблице разрешён только один первичный ключ
+```
+mysql> PRIMARY KEY(id, name(10))
+```
+Допустимо объявление индека не по одному столбцу по двум и более, первичный ключ создаётся по столбцу id и по первым 10 символам столбца name(10) как правило для индекса достаточно первых индексов строки
 
-# DROP TABLE IF EXISTS catalogs;
-# CREATE TABLE catalogs (
-#     id INT UNSIGNED NOT NULL PRIMARY KEY,
-#     name VARCHAR(255) COMMENT 'name BD categories'
-# ) COMMENT = 'categories internet shop';
+`AUTO_INCREMENT` - автоматическое создание уникального номера
+```
+mysql> id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT;
+mysql> SELECT * FROM catalogs;
+```
+Убедимся что таблица пустая, вставим несколько строк
+```
+mysql> INSERT INTO catalogs (name) VALUES ('Процессоры');
+```
+Не указываем поле id - оно должно сформироваться автоматически, значение поле id - 1
+```
+mysql> INSERT INTO catalogs (name) VALUES ('Видеокарты');
+```
+Поле ай ди сформировалось автоматически . значение поля id 2 В `INSERT` запросе специально не указали id, чтобы оно получило значение `NULL`
 
-# Посмотрим в консоле на описание таблицы
-#   mysql> DESCRIBE catalogs;
+Псевдоним `SERIAL`
+```
+SERIAL == BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
+```
+Это позволяет более компактно записывать
+```
+id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT;
+```
+равнозначно
+```
+mysql> id SERIAL PRIMARY KEY;
+```
+Таблица может содержать несколько обычных и уникальных индексов для того чтобы их различать индексы могут иметь собственные имена часто имена индексов совпадают с именами столбцов, которые они индексируют. Для индекса можно назначить совершенно другое имя.
 
-# Альтернативный способ объявления первичного ключа
-# выбрали БД.
-#   mysql> PRIMARY KEY(id)
-# в скбках название столбца к которому применяем (id)
-# ключвое слово PRIMARY KEY может встречаться в таблице только 1 раз
-# т.к в таблице разрешён только один первичный ключ
-#  mysql> PRIMARY KEY(id, name(10))
-# допустимо объявление индека не по одному столбцу
-# по двум и более
-# первичный ключ создаётся по столбцу id
-# и по первым 10 символам столбца name(10)
-# как правило для индекса достаточно первых индексов строки
+Объявление индекса происходит с помощью ключевого слова `INDEX` или `KEY` для уникальных индексов доп. ключевое слово `UNIQUE`
 
-# AUTO_INCREMENT - автоматическое создание уникального номера
-#  mysql> id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT;
-
-#   mysql> SELECT * FROM catalogs;
-# убедимся что таблица пустая
-# вставим несколько строк
-#   mysql> INSERT INTO catalogs (name) VALUES ('Процессоры');
-# не указываем поле id - оно должно сформироваться автоматически
-# значение поле id - 1
-#   mysql> INSERT INTO catalogs (name) VALUES ('Видеокарты');
-# поле ай ди сформировалось автоматически . значение поля id 2
-# В INSERT запросеспециально не указали id,
-# чтобы оно получило значение NULL
-
-# Псевдоним SERIAL
-# SERIAL == BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
-# это позволяет более компактно записывать
-# id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT;
-# равнозначно
-#  mysql> id SERIAL PRIMARY KEY;
-
-# Ттаблица может содержать
-# несколько обычных и уникальных индексов
-# для того чтобы их различать индексы
-# могут иметь собственные имена
-# часто имена индексов совпадают с именами столбцов
-# которые они индексируют
-# для индекса можно назначить совершенно другое имя
-# Объявление индекса происходит
-# с помощью ключевого слова
-# INDEX или KEY
-# для уникальных индексов
-# доп. ключевое слово UNIQUE
-
-# В таблице ptoducts снабдим индексом поле
-# catalog_id
-# DROP TABLE IF EXISTS products;
-# CREATE TABLE products (
-#    id SERIAL PRIMARY KEY,
-#    name VARCHAR(255) COMMENT 'name',
-#    discription TEXT COMMENT 'discription',
-#    price DECIMAL (11,2) COMMENT 'price' ,
-#    catalog_id INT unsigned,
-#    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-#    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-# -> KEY index_of_catalog_id(catalog_id)
-# ) COMMENT = 'Positions';
-
-# посмотрим через консоль
+В таблице ptoducts снабдим индексом поле catalog_id
+```
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
+   id SERIAL PRIMARY KEY,
+   name VARCHAR(255) COMMENT 'name',
+   discription TEXT COMMENT 'discription',
+   price DECIMAL (11,2) COMMENT 'price' ,
+   catalog_id INT unsigned,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+-> KEY index_of_catalog_id(catalog_id)
+) COMMENT = 'Positions';
+```
+посмотрим через консоль
+```
 #   mysql> DESCRIBE products;
-# +-------------+-----------------+------+-----+-------------------+--------------
-# ---------------------------------+
-# | Field       | Type            | Null | Key | Default           | Extra
-#                                  |
-# +-------------+-----------------+------+-----+-------------------+--------------
-# ---------------------------------+
-# | id          | bigint unsigned | NO   | PRI | NULL              | auto_incremen
-# t                                |
-# | name        | varchar(255)    | YES  |     | NULL              |
-#                                  |
-# | discription | text            | YES  |     | NULL              |
-#                                  |
-# | price       | decimal(11,2)   | YES  |     | NULL              |
-#                                  |
-# | catalog_id  | int unsigned    | YES  | MUL | NULL              |
-#                                  |
-# | created_at  | datetime        | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENER
-# ATED                             |
-# | updated_at  | datetime        | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENER
-# ATED on update CURRENT_TIMESTAMP |
-# +-------------+-----------------+------+-----+-------------------+--------------
-# ---------------------------------+
-# 7 rows in set (0.01 sec)
+```
+-->
+```
++-------------+-----------------+------+-----+-------------------+--------------
+---------------------------------+
+| Field       | Type            | Null | Key | Default           | Extra
+                                 |
++-------------+-----------------+------+-----+-------------------+--------------
+---------------------------------+
+| id          | bigint unsigned | NO   | PRI | NULL              | auto_incremen
+t                                |
+| name        | varchar(255)    | YES  |     | NULL              |
+                                 |
+| discription | text            | YES  |     | NULL              |
+                                 |
+| price       | decimal(11,2)   | YES  |     | NULL              |
+                                 |
+| catalog_id  | int unsigned    | YES  | MUL | NULL              |
+                                 |
+| created_at  | datetime        | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENER
+ATED                             |
+| updated_at  | datetime        | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENER
+ATED on update CURRENT_TIMESTAMP |
++-------------+-----------------+------+-----+-------------------+--------------
+---------------------------------+
+7 rows in set (0.01 sec)
+```
+Создать индекс в уже существующей таблице можно с помощью оператора `CREATE INDEX`
 
-# Создать индекс в уже существующей таблице
-# можно с помощью оператора CREATE INDEX
+```
+mysql> CREATE INDEX index_of_catalog_id ON products (catalog_id);
+```
+удалить индекс из таблицы
+```
+mysql> DROP INDEX index_of_catalog_id ON products;
+```
+### Индексы BTREE и ХЭШиндексы
+Мы можем явно указывать тип индекса `USING BTREE`
+```
+mysql> CREATE INDEX index_of_catalog_id USING BTREE ON products (catalog_id);
+```
+указываем явно чтобы индекс был построен как бинарное дерево в качестве альтернативы можем использовать `HASH`
+```
+mysql> CREATE INDEX index_of_catalog_id USING HASH ON products (catalog_id);
+```
+Полезен для точного поиска с указанием всех столбцов индекса в индоксе хронятся хэштеги и указатели на соответствующие строки
 
-#   mysql> CREATE INDEX index_of_catalog_id ON products (catalog_id);
+отрефакторим таблицу products;
 
-# удалить индекс из таблицы
-#   mysql> DROP INDEX index_of_catalog_id ON products;
-
-# Индексы BTREE и ХЭШиндексы
-# мы можем явно указывать тип индекса USING BTREE
-#  mysql> CREATE INDEX index_of_catalog_id USING BTREE ON products (catalog_id);
-# указываем явно чтобы индекс был построен как бинарное дерево
-# в качестве альтернативы можем использовать HASH
-#   mysql> CREATE INDEX index_of_catalog_id USING HASH ON products (catalog_id);
-# полезен для точного поиска с указанием всех столбцов индекса
-# в индоксе хронятся хэштеги
-# и указатели на соответствующие строки
-
-# отрефакторим таблицу products;
-
-# ЗАПРОСЫ НА ПОИСК ИНФО
-#   mysql> SELECT * FROM tbl WHERE year = 1990
-#   mysql> SELECT * FROM tbl WHERE year = 1990 AND last_name = Борисов
-
-# ДОБАВЛЯЕМ ИНДЕКСЫ ТОЛЬКО В ТОМ СЛУЧАЕ
-# КОГДА ЭТО НЕОБХОДИМО
+### ЗАПРОСЫ НА ПОИСК ИНФО
+```
+mysql> SELECT * FROM tbl WHERE year = 1990
+mysql> SELECT * FROM tbl WHERE year = 1990 AND last_name = Борисов
+```
+ДОБАВЛЯЕМ ИНДЕКСЫ ТОЛЬКО В ТОМ СЛУЧАЕ КОГДА ЭТО НЕОБХОДИМО
 
 # CRUD ОПЕРАЦИИ
-# - Введение в CRUD-операции
-# - Вставка данных
-# - Извлечение данных
-# - Обновление данных
-# - удадение данных
-# - Команда INSERT ... SELECT
+- Введение в CRUD-операции
+- Вставка данных
+- Извлечение данных
+- Обновление данных
+- удадение данных
+- Команда INSERT ... SELECT
 
-# 4 базовые операции
-# создания, чтения, обновления и удаления
-# Crete - INSERT
-# Read - SELECT
-# Update - UPDATE
-# Delete - DELETE
+4 базовые операции: создания, чтения, обновления и удаления
+1) Crete - INSERT
+2) Read - SELECT
+3) Update - UPDATE
+4) Delete - DELETE
+
 # CRUD
 
-# Встава. Оператор INSERT
-# Одиночная вставка
-#   mysql> INSERT INTO catalogs VALUES (NULL, 'Процессоры');
-#   mysql> INSERT INTO catalogs VALUES (NULL, 'Мат.платы');
-#   mysql> INSERT INTO catalogs VALUES (NULL, 'Видеокарты');
+### Вставка. Оператор INSERT
+Одиночная вставка
+```
+mysql> INSERT INTO catalogs VALUES (NULL, 'Процессоры');
+mysql> INSERT INTO catalogs VALUES (NULL, 'Мат.платы');
+mysql> INSERT INTO catalogs VALUES (NULL, 'Видеокарты');
+```
+Многострочная вставка
+```
+mysql> INSERT INTO catalogs VALUES
+      (NULL, 'процессоры'),
+      (NULL, 'Мат.платы'),
+      (NULL, 'Видеокарты');
+```
+Вставим в нашу таблицу catalogs записи
+```
+DROP TABLE IF EXISTS catalogs;
+CREATE TABLE catalogs (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) COMMENT 'name BD categories'
+) COMMENT = 'categories internet shop';
 
-# Многострочная вставка
-#   mysql> INSERT INTO catalogs VALUES
-#       (NULL, 'процессоры'),
-#       (NULL, 'Мат.платы'),
-#       (NULL, 'Видеокарты');
+INSERT INTO catalogs VALUES (NULL, 'Processors');
+```
+Мы вставляем в таблицу первую запись полю id мы присваиваем неопредлённое значение NULL, Полю name присваиваем значение 'Processors'
 
-# Вставим в нашу таблицу catalogs записи
+Мы можем явно указывать список столбцов, которые мы вставяем
+```
+mysql> INSERT INTO catalogs (id, name) VALUES (NULL, 'Motherboards');
+```
+можем поменять местами столбцы, такая запись тоже допустима
+```
+mysql> INSERT INTO catalogs (name, id) VALUES ('Motherboards', NULL);
+```
+также вместо ключевого слова `NULL` можем использовать ключевое слово `DEFAULT`
+```
+mysql> INSERT INTO catalogs VALUES (DEFAULT, 'Videocards');
+```
+Множество `INSERT` запросов можно заменить многострочниым вариантом запроса
+```
+mysql> INSERT INTO catalogs VALUES
+     (DEFAULT, 'Processors'),
+     (DEFAULT, 'Motherboards'),
+     (DEFAULT, 'Videocards');
+```
+Для извлечения данных используется оператор SELECT
+```
+mysql> SELECT id, name FROM catalogs;
+```
+После ключевого оператора `SELECT` указываем список столбцов id, name ключевое слово `FROM` указываем откуда извлекаем из какой таблицы catalogs, порядок столбцов после ключевого слова можно изменять тем самым будем менять порядок столбцов в результиующей таблице
+```
+mysql> SELECT name, id FROM catalogs;
+```
+можем выводить только часть столбцов
+```
+mysql> SELECT name FROM catalogs;
+```
+часто столбцы заменяются символом `*` в этом случае выводятся все столбцы, в порядке в котором они определены в `CREATE TABLE`
+```
+mysql> SELECT * FROM catalogs;
+```
+### вставка при помощи `INSERT`
+добавим уникальный индекс на столбец name таблицы catalogs; тем самым мы запретим вставку разделов, которые уже вставлены в таблицу для того чтобы не раздувать индекс, проиндексируем только первые 10 символов `UNIQUE unigue_name(name(10))`
 
-# DROP TABLE IF EXISTS catalogs;
-# CREATE TABLE catalogs (
-#     id SERIAL PRIMARY KEY,
-#     name VARCHAR(255) COMMENT 'name BD categories'
-# ) COMMENT = 'categories internet shop';
+```
+DROP TABLE IF EXISTS catalogs;
+CREATE TABLE catalogs (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) COMMENT 'name BD categories',
+    UNIQUE unigue_name(name(10))
+) COMMENT = 'categories internet shop';
+```
+в случае вставки уже имеющихся значений, получим сообщение об ошибке
 
-# INSERT INTO catalogs VALUES (NULL, 'Processors');
-# мы вставляем в таблицу первую запись
-# полю id мы присваиваем неопредлённое значение NULL
-# Полю name присваиваем значение 'Processors'
-
-# Мы можем явно указывать список столбцов,
-# которые мы вставяем
-#   mysql> INSERT INTO catalogs (id, name) VALUES (NULL, 'Motherboards');
-# можем поменять местами столбцы, такая запись тоже допустима
-#   mysql> INSERT INTO catalogs (name, id) VALUES ('Motherboards', NULL);
-# также вместо ключевого слова NULL
-# можем использовать ключевое слово DEFAULT
-#   mysql> INSERT INTO catalogs VALUES (DEFAULT, 'Videocards');
-
-# Множество INSERT запросов можно заменить
-# многострочниым вариантом запроса
-#   mysql> INSERT INTO catalogs VALUES
-#       (DEFAULT, 'Processors'),
-#       (DEFAULT, 'Motherboards'),
-#       (DEFAULT, 'Videocards');
-
-# Для извлечения данных используется оператор SELECT
-#   mysql> SELECT id, name FROM catalogs;
-# После ключевого оператора SELECT
-# указываем список столбцов id, name
-# ключевое слово FROM
-# указываем откуда извлекаем
-# из какой таблицы catalogs
-# порядок столбцов после ключевого слова можно изменять
-# тем самым будем менять порядок столбцов
-# в результиующей таблице
-#   mysql> SELECT name, id FROM catalogs;
-# можем выводить только часть столбцов
-#   mysql> SELECT name FROM catalogs;
-# часто столбцы заменяются символом *
-# в этом случае выводятся все столбцы,
-# в порядке в котором они определены в CREATE TABLE
-#   mysql> SELECT * FROM catalogs;
-
-# вставка при помощи INSERT
-# добавим уникальный индекс на столбец name
-# таблицы catalogs;
-# тем самым мы запретим вставку разделов,
-# которые уже вставлены в таблицу
-# для того чтобы не раздувать индекс,
-# проиндексируем только первые 10 символов
-# UNIQUE unigue_name(name(10))
-
-# DROP TABLE IF EXISTS catalogs;
-# CREATE TABLE catalogs (
-#     id SERIAL PRIMARY KEY,
-#     name VARCHAR(255) COMMENT 'name BD categories',
-#     UNIQUE unigue_name(name(10))
-# ) COMMENT = 'categories internet shop';
-# в случае вставки уже имеющихся значений,
-# получим сообщение об ошибке
-
-# Уникальный ключ не допускает нарушения целостности БД
-# избежать такого поведения
-# можно с помощью ключевого слова IGNORE
-#   mysql> INSERT IGNORE INTO catalogs VALUES (NULL, 'Processors');
-# попытка вставить существующее значение просто блокируется
+Уникальный ключ не допускает нарушения целостности БД избежать такого поведения можно с помощью ключевого слова `IGNORE`
+```
+mysql> INSERT IGNORE INTO catalogs VALUES (NULL, 'Processors');
+```
+попытка вставить существующее значение просто блокируется
 
 # Удаление данных
-#   mysql> DELETE FROM catalogs;
-# удаляет все или часть записай из таблицы
+```
+mysql> DELETE FROM catalogs;
+```
+удаляет все или часть записай из таблицы
 
-# очистка таблицы
-#   mysql> TRUNCATE catalogs;
-# удаляет все записи и обнуляет счётчики AUTOINCREMANT
+очистка таблицы
+```
+mysql> TRUNCATE catalogs;
+```
+удаляет все записи и обнуляет счётчики `AUTOINCREMANT`
 
-# Можем удалять часть данных
-#   mysql> DELETE FROM catalogs LIMIT 2;
-# мы удалм только 2 записи.
-# Перые 2 записи таблицы удалятся
+Можем удалять часть данных
+```
+mysql> DELETE FROM catalogs LIMIT 2;
+```
+мы удалм только 2 записи. Перые 2 записи таблицы удалятся
 
-# Удалять только те записи
-# первичный ключ ай ди которых больше 1
-#   mysql> DELETE FROM catalogs WHERE id > 1 LIMIT 1;
+Удалять только те записи первичный ключ ай ди которых больше 1
+```
+mysql> DELETE FROM catalogs WHERE id > 1 LIMIT 1;
+```
+При использовании операции `DELETE` счётчик и автоинкремент не затрагивается
 
-# При использовании операции DELETE
-# счётчик и автоинкремент не затрагивается
+вставим данные, удалим и снова вставим, чтобы посмотреть как работаетсчётчик автоинкремент
+```
+mysql> INSERT INTO catalogs VALUES
+     (DEFAULT, 'Processors'),
+     (DEFAULT, 'Motherboards'),
+     (DEFAULT, 'Videocards');
+mysql> DELETE FROM catalogs;
+mysql> INSERT INTO catalogs VALUES
+     (DEFAULT, 'Processors'),
+     (DEFAULT, 'Motherboards'),
+     (DEFAULT, 'Videocards');
+```
+столбец id  с натсройками:
+id SERIAL PRIMARY KEY, во второй вставке имеет id 4,5,6
 
-# вставим данные, удалим и снова вставим,
-# чтобы посмотреть как работаетсчётчик автоинкремент
+сброс счётчиков
+```
+mysql> TRINCATE catalogs;
+```
+очищает таблицу, обнуляет счётчики
 
-#   mysql> INSERT INTO catalogs VALUES
-#       (DEFAULT, 'Processors'),
-#       (DEFAULT, 'Motherboards'),
-#       (DEFAULT, 'Videocards');
-#   mysql> DELETE FROM catalogs;
-#   mysql> INSERT INTO catalogs VALUES
-#       (DEFAULT, 'Processors'),
-#       (DEFAULT, 'Motherboards'),
-#       (DEFAULT, 'Videocards');
+команда `UPDATE` позволяет редактировать данные
+```
+UPDATE
+  catalogs
+SET
+  name = 'Processors (Intel)'
+WHERE
+  name = 'Processors';
+```
+Если убрать ограничение `WHERE` произошла бы попытка замены всех записей таблицы, а если поле проиндексировано уникальным ключом произойдёт ошибка
 
-# столбец id  с натсройками:
-# id SERIAL PRIMARY KEY,
-# во второй вставке имеет id 4,5,6
-
-# сброс счётчиков
-#   mysql> TRINCATE catalogs;
-# очищает таблицу, обнуляет счётчики
-
-# команда UPDATE позволяет редактировать данные
-# UPDATE
-#   catalogs
-# SET
-#   name = 'Processors (Intel)'
-# WHERE
-#   name = 'Processors';
-# Если убрать ограничение WHERE
-# произошла бы попытка замены всех записей таблицы
-# а если поле проиндексировано уникальным ключом
-# произойдёт ошибка
-
-# специалиный оператор INSERT SELECT
-# позволяет вставлять записи из одной таблицы в другую
-# в том числе осуществляя преобразоваие над данными
-# если таблицы имеют идентичные столбцы
-# перемещаем все данные изтаблицы catalog в таблицу cat
+Специалиный оператор `INSERT SELECT` позволяет вставлять записи из одной таблицы в другую в том числе осуществляя преобразоваие над данными если таблицы имеют идентичные столбцы перемещаем все данные изтаблицы catalog в таблицу cat
 ```
  INSERT INTO
       cat
@@ -1641,7 +1627,8 @@ mysql> INSERT INTO tbl VALUES();
   FROM
       catalogs;
 ```
-
+ КОД И КОМАНДЫ:
+```
 - >>> mysql -u root -p | запускаем сервер скюль
 - mysql> SELECT 'Hello Databases'; | выбираем базу данных
 - >>> mysql -u root -h 192.168.0.10 -P 3306 -p | Если сервер установлен на удалённом хосте, соединяемся указав ай пи адрес или домен удалёного сервера в параметре ейч (h) в параметре P мы можем указать порт
@@ -1654,4 +1641,4 @@ mysql> INSERT INTO tbl VALUES();
 - mysql> SELECT * FROM mysql.user LIMIT 1\G - вертикальный вывод длинной таблицы. Построчно.
 - mysql> STATUS | посмотреть статус сервера
 - mysql> \s | посмотреть статус сервера
-- 
+```
