@@ -1641,4 +1641,26 @@ WHERE
 - mysql> SELECT * FROM mysql.user LIMIT 1\G - вертикальный вывод длинной таблицы. Построчно.
 - mysql> STATUS | посмотреть статус сервера
 - mysql> \s | посмотреть статус сервера
+- mysql> SYSTEM ls | системные команды из mysql
+- mysql> SOURCE hello.sql | запуск sql скрипта
+- mysql> \. hello.sql | запуск sql скрипта
+- mysql> mysqldump mysql > mysql.sql |  дамп системной базы mysql
+- >>> tail -10 mysql.sql | прочитать последние 10 строчек файла
+- mysql> mysql mysql < hello.sql |  развернуть дамп базы данных
+- mysql> CREATE DATABASE crypto; |  создать базу данных (создаётся база данных crypto)
+- mysql> SHOW DATABASES; | Посмотреть существующие БД
+- mysql> SHOW VARIABLES LIKE 'datadir'; | Узнаем где расположен каталог данных
+- mysql> exit |  выход из sql 
+- mysql> \q |  выход из sql
+- >>> cp -r crypto foo | рекурсивное копирование из директории crypto в директорию foo
+- mysql> DROP DATABASE crypto; | удаление базы данных
+- mysql> CREATE DATABASE IF NOT EXISTS crypto; |  создание базы данных на проверку имени, Если бд с таким именем уже существует ничего не произойдёт
+- mysql> DROP DATABASE IF EXIST crypto;  | Если база данных есть она удалится, если бд нет - ничего не произойдёт
+- mysql>  SHOW TABLES; | список текущих таблиц
+- mysql> USE crypto |  выбрать базу данных crypto
+- mysql>  SHOW TABLES FROM mysql;  | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
+- mysql>  SHOW TABLES FROM crypto; | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
+- mysql> SELECT mysql.user.user, mysql.user.Host FROM mysql.User; | В операторе select мы явно указываем имя БД mysql. Имя таблицы user. и имя столбцов user Host и в ключевой команде FROM указываем имя БД и таблицы FROM mysql.user;
+- >>> mysql -u root -p crypto; | выбор базы данных при входе
+
 ```
