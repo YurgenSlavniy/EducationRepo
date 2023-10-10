@@ -871,7 +871,7 @@ mysql> SELECT * FROM tbl;
 # +------+
 ```
 
-МОЖЕМ УКАЗЫВАТЬ КОЛИЧЕСТВО СИМВОЛОВ ПОСЛЕ INT
+Можем указывать количество символов после INT
 ```
 mysql> INSERT INTO tbl VALUES (1000);
 mysql> SELECT * FROM tbl;
@@ -1656,11 +1656,69 @@ WHERE
 - mysql> DROP DATABASE crypto; | удаление базы данных
 - mysql> CREATE DATABASE IF NOT EXISTS crypto; |  создание базы данных на проверку имени, Если бд с таким именем уже существует ничего не произойдёт
 - mysql> DROP DATABASE IF EXIST crypto;  | Если база данных есть она удалится, если бд нет - ничего не произойдёт
-- mysql>  SHOW TABLES; | список текущих таблиц
+- mysql> SHOW TABLES; | список текущих таблиц
 - mysql> USE crypto |  выбрать базу данных crypto
-- mysql>  SHOW TABLES FROM mysql;  | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
-- mysql>  SHOW TABLES FROM crypto; | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
+- mysql> SHOW TABLES FROM mysql;  | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
+- mysql> SHOW TABLES FROM crypto; | Если не выбирать БД. то в каждом операторе надо явно указывать какая БД будет использоваться
 - mysql> SELECT mysql.user.user, mysql.user.Host FROM mysql.User; | В операторе select мы явно указываем имя БД mysql. Имя таблицы user. и имя столбцов user Host и в ключевой команде FROM указываем имя БД и таблицы FROM mysql.user;
 - >>> mysql -u root -p crypto; | выбор базы данных при входе
+- >>> CREATE TABLE имя_таблицы (
+      имя_столбца параметры,
+      имя_столбца параметры,
+     ...
+       )    | Создание таблицы внутри базы данных
+- >>> CREATE TABLE users (k INT); | Создание таблицы `users` с колонокой `К` и значение этой колонки `INT`
+- >>> CREATE TABLE IF NOT EXIST users(k INT); | Если такой таблицы нет то она создастся, иначе ничего не произойдёт
+- >>> DESCRIBE users; | Просмотр структуры таблицы
+- >>> DESCRIBE user 'User'; | Оператор Describe может принимать доп. параметр - имя столбца
+- >>> DESCRIBE user 'm%'; | лайтшаблоны вместе с оператором DESCRIBE заменять с помощью символа процента % любое количество символов, а символом _ один символ. Запросим с таблице юзер все столбцы, которе начинаются с символа m
+- >>> SELECT * FROM information_schema.SCHEMATA; | Запросим весь список баз данных из information_schema
+- >>> SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'crypto'; | выбираем таблицу 'crypto' из списка таблиц базы information_schema.TABLES
+- >>> SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'crypto'\G; | вывод результата предыдущего запроса в строковом виде
+- mysql> HELP DESCRIBE; | откроет помощь прямо в коноле
+- mysql> SELECT id, name FROM users WHERE name='Игорь' | выбрать столбцы id, name из таблицы users, где в столбце name содержится значение 'Игорь'
+- mysql> SELECT 'Hello db\'s' | когда ковычки внутри ковычек интерпритатор запутается надо экранировать символ ковычек при помощи слэша
+- mysql> SELECT "Hello db's" | также можем воспользовться двойными ковычками
+- mysql> CREATE TABLE tbl (`create` INT) | Имена БД , таблиц, столбцов строк могут содержать разные символы кроме |\./ если имя совпадает с ключевым словом его заключают в обратные ковычки `
+- mysql> CREATE TABLE tbl (id INT(8));  |  создаём таблицу tbl с одним столбцом id значение которого INT в котором 8 символов
+- mysql> INSERT INTO tbl VALUES (5); | поместим в таблицу число 5
+- mysql> CREATE TABLE tbl (id INT(3) ZEROFILL); | Создадим таблицу, где столбец id будет содержать числовое значение INT, столбец будет занимать 3 символа INT(3), ZEROFILL вместо пробелов отображать нули
+- mysql> INSERT INTO tbl VALUES (1000); | можем указывать количество символов после INT
+- mysql> CREATE TABLE tbldec (price DECIMAL(7,4));
+- mysql> INSERT INTO tbldec VALUES (111.2);
+- mysql> SELECT * FROM tbldec;
+
+```
+SQL ЗАПРОСЫ
+```
+--. -- |  Однострочный комментарий
+/* многострочный комментарий */
+
+>>> DROP TABLE IF EXISTS tbl;
+    CREATE TABLE tbl (
+    name CHAR(10) DEFAULT 'anonimus',
+    description VARCHAR(255)
+  );
+
+Удаляем таблицу tbl, если она существует , создаём таблицу tbl с 1-ым столбцом `name` значение которого текстовое `CHAR`, длина колонки `10 символов`, Если поле не заполнено, автоматически заполняется 'anonimus', и 2-ой столбец `description` с типом данных VARCHAR и длинною 255
+
+>>> INSERT INTO tbl VALUES (DEFAULT, 'Новый пользователь');
+>>> INSERT INTO tbl VALUES ('Юрген', 'Новый пользователь');
+>>> SELECT * FROM tbl;
+
+вставляем 2 строки с данными (DEFAULT, 'Новый пользователь') и ('Юрген', 'Новый пользователь') и смотрим содержание таблицы
+
+***
+Итоговый готовый скрипт:
+
+DROP TABLE IF EXISTS tbl;
+CREATE TABLE tbl (
+	name CHAR(10) DEFAULT 'anonimus',
+	description VARCHAR(255)
+);
+INSERT INTO tbl VALUES (DEFAULT, 'New User');
+INSERT INTO tbl VALUES ('Yurgen', 'User');
+SELECT * FROM tbl;
+***
 
 ```
