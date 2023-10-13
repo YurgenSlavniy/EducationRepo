@@ -295,3 +295,4 @@ https://rb.ru/story/ai-creative-instruments/
 https://pikabu.ru/.../21_sayt_gde_mozhno_protestirovat...
 https://vc.ru/.../624.../585040-luchshie-neyroseti-2023-goda
 https://pikabu.ru/.../ailib__katalog_bolee_900_neyrosetey... - 900 нейросетей!
+https://www.heygen.com/ (работа с видеороликами перевод и наложение губ)
