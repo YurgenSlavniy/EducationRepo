@@ -46,3 +46,24 @@ SELECT name FROM passenger WHERE name LIKE '%man';
 ```
 SELECT COUNT(*) as count FROM trip WHERE plane = 'TU-134';
 ```
+6) Which companies have flown on Boeing
+```
+SELECT DISTINCT name
+FROM Company
+JOIN Trip
+  ON Company.id=Trip.company
+WHERE plane = 'Boeing'
+```
+7) Display all the names of aircraft that you can fly to Moscow
+```
+SELECT DISTINCT plane
+FROM Trip
+WHERE town_to = 'Moscow';
+```
+8) What cities can I fly to from Paris and how long will it take?
+```
+SELECT town_to, TIMEDIFF(time_in, time_out)
+AS flgtime
+FROM Trip
+WHERE town_from = 'Paris';
+```
