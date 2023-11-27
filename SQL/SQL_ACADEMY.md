@@ -67,3 +67,18 @@ AS flgtime
 FROM Trip
 WHERE town_from = 'Paris';
 ```
+9) What companies organize flights from Vladivostok?
+```
+SELECT DISTINCT name
+FROM Company
+JOIN Trip
+  ON Company.id=Trip.company
+WHERE town_from = 'Vladivostok';
+```
+10) Print trips made from 10 a.m. to 2 p.m. on January 1, 1900.
+```
+SELECT * FROM Trip
+WHERE time_out
+BETWEEN '1900-01-01 10:00:00'
+AND '1900-01-01 14:00:00' 
+```
